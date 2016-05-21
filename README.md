@@ -17,3 +17,11 @@ Pages can still be bookmarked and links can be shared.  This is achieved by havi
 ######Problems
 Preloading doesn't work on mobile devices because there is no "hover" event on a smartphone.  Mobile devices do not break the site, but they do not benefit from preloading.
 
+
+##Upcoming Features
+* Site-wide search
+* Database integration for articles
+* Article upload and automatic directory creation via web interface
+* Author cards
+* Dynamic suggested article footer area
+
