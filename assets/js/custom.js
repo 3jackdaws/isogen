@@ -2,11 +2,13 @@
  * Created by ian on 5/20/16.
  */
 var preloadPageData;
+var siteSection;
 
 function loadPage(page) {
     var path = getURL(page);
     $.get(path, function (data) {
         $("#mainPageContainer").html(data);
+        updatePage();
     });
 }
 
@@ -20,6 +22,7 @@ function preloadPage(element){
         $(".loaded").removeClass("loaded");
         $.get(path, function (data) {
             preloadPageData = data;
+            //updatePage();
             element.removeClass("lock");
             element.addClass("loaded");
         });
@@ -46,26 +49,67 @@ function buildArticle(name, onPreloadEvent){
     });
 }
 
+function loadPageOnBack(href){
+    if(new RegExp("articles").test(href))
+    {
+        var article = href.replace(new RegExp("/.*articles/"), "")
+        buildArticle(article, function () {
+            $("#mainPageContainer").html(preloadPageData);
+            updatePage(getArticleBookmarkPath(article));
+        });
+    }
+    else{
+        var page = href.match(new RegExp("[a-zA-Z]+"));
+        if(page == null)
+        {
+            page = "home";
+        }
+        console.log(page);
+        loadPage(page);
+    }
+}
+
+function updatePage(url)
+{
+    if(url != null) history.pushState('data', null, url);
+    var path = window.location.pathname;
+    if(path !== "/") {
+        console.log(path);
+        siteSection = path.match(new RegExp("[a-z]+"));
+    }
+    else{
+        siteSection = "home";
+        console.log(path);
+    }
+
+}
+
+
 $(document).ready(function() {
 
     if(page.length > 1){
         loadPage(page);
-        history.pushState('data', '', page);
+        updatePage(page);
     }
     else if(article.length > 1)
     {
         buildArticle(article, function () {
             $(".loaded").removeClass("loaded");
             $("#mainPageContainer").html(preloadPageData);
-            history.pushState('data', null, getArticleBookmarkPath(article));
+            updatePage(getArticleBookmarkPath(article));
         });
     }
     else
         loadPage("home");
 
-    // window.onpopstate(function () {
-    //
-    // });
+    window.onpopstate = function (event) {
+        if(event.state)
+        {
+            loadPageOnBack(window.location.pathname);
+        }
+    };
+
+
 
     $(".navlink").click(function(){
         $(".active").removeClass("active");
@@ -80,7 +124,9 @@ $(document).ready(function() {
         }
         if(page == "home")
             page = "/";
+        //alert(page);
         history.pushState('data', '', page);
+        updatePage();
     });
 
     $(".navlink").hover(function () {

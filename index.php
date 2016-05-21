@@ -80,10 +80,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="navlink"><a href="javascript:;">Home</a></li>
-                <li class="navlink"><a href="javascript:;">Posts</a></li>
-                <li class="navlink"><a href="javascript:;">Code</a></li>
-                <li class="navlink"><a href="javascript:;">About</a></li>
+                <li id="home" class="navlink"><a href="javascript:;">Home</a></li>
+                <li id="posts" class="navlink"><a href="javascript:;">Posts</a></li>
+                <li id="code" class="navlink"><a href="javascript:;">Code</a></li>
+                <li id="about" class="navlink"><a href="javascript:;">About</a></li>
                 <li class=""><a href="mailto:3jackdaws@gmail.com">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -100,8 +100,9 @@
     </div>
 
 
-    <script>var page = "<?=$loadpage?>";
-            var article = "<?=$loadarticle?>";
+    <script>
+        var page = "<?=$loadpage?>";
+        var article = "<?=$loadarticle?>";
     </script>
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
