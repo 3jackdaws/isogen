@@ -31,8 +31,9 @@
     <style>
         .article-img{
             background-size: cover;
+            background-position: center center;
             width: 100%;
-            height: 50vh;
+            height: 400px;
         }
 
         article{
@@ -47,28 +48,54 @@
         }
 
         .post-card{
-            float: left;
             overflow: hidden;
-            margin: 5%;
-            text-align: center;
+            position: relative;
+            text-align: left;
             border: 1px solid lightgray;
             border-radius: 6px;
-            width: 25%;
-            height: ;
+            margin-bottom: 5%;
+            background-color: #f7f7f7;
+            box-shadow: 1px 1px 10px 5px #f5f5f5;
         }
 
-        .post-card img{
+        .post-card .img{
             width: 100%;
             height: 50%;
+            min-height: 200px;
+            background-size: cover;
+        }
 
+        .post-card .container{
+            margin: 0 auto;
+            padding: 5%;
+            padding-top: 0%;
+            width: 100%;
+        }
 
+        .post-card h1{
+            font-size: 25px;
+        }
+
+        .post-card h2{
+            font-size: 22px;
+            color: grey;
+        }
+        .post-card .overlay{
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            cursor: pointer;
         }
     </style>
 
 </head>
 
 <body>
-    <nav id="nav" class="navbar navbar-default" style="border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 0.5px lightgray">
+    <nav id="nav" class="navbar navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 0.5px lightgray">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" style="color:black" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>

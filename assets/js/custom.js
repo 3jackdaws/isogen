@@ -29,6 +29,11 @@ function preloadPage(element){
     }
 }
 
+// function openArticle(card){
+//     var article = card.attr("preload");
+//     alert(article);
+// }
+
 function getURL(file){
     return '/' + file + '/' + file + ".php";
 }
@@ -81,6 +86,9 @@ function updatePage(url)
         siteSection = "home";
         console.log(path);
     }
+    window.scrollTo(0, 0);
+    $("li.navlink").removeClass("active");
+    $("#"+siteSection).addClass("active");
 
 }
 
@@ -112,12 +120,11 @@ $(document).ready(function() {
 
 
     $(".navlink").click(function(){
-        $(".active").removeClass("active");
-        $(this).addClass("active");
         var page = $(this).children()[0].innerHTML.toLowerCase();
         if($(this).hasClass("loaded"))
         {
             $("#mainPageContainer").html(preloadPageData);
+
         }
         else{
             loadPage(page);
@@ -163,14 +170,14 @@ $(document).ready(function() {
         if($(this).hasClass("loaded"))
         {
             $("#mainPageContainer").html(preloadPageData);
-            history.pushState('data', null, getArticleBookmarkPath(link) );
+            updatePage(getArticleBookmarkPath(link));
             console.log("Preload");
         }else {
 
             buildArticle(link, function () {
                 $(".loaded").removeClass("loaded");
                 $("#mainPageContainer").html(preloadPageData);
-                history.pushState('data', null, getArticleBookmarkPath(link));
+                updatePage(getArticleBookmarkPath(link));
             });
             console.log("No load");
         }
