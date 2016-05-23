@@ -23,7 +23,6 @@ Articles are added to the website by adding an article "package".  Article "pack
 ######Problems
 Preloading doesn't work on mobile devices because there is no "hover" event on a smartphone.  Mobile devices do not break the site, but they do not benefit from preloading.
 
-
 ##Upcoming Features
 * Site-wide search
 * Database integration for articles
