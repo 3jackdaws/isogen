@@ -113,6 +113,7 @@ $(document).ready(function() {
     window.onpopstate = function (event) {
         if(event.state)
         {
+            console.log("PopState: " + window.location.pathname);
             loadPageOnBack(window.location.pathname);
         }
     };

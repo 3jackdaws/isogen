@@ -14,6 +14,12 @@ As for the reason I am not using Wordpress or some other blog frmaework, I like 
 Website sections are preloaded on mouse hover.  When the section is clicked, the page is swapped out instantly.  This also works with articles and posts.  
 Pages can still be bookmarked and links can be shared.  This is achieved by having index files at the article directories that redirect to the homepage with some GET variables.  The page requested is then loaded based on the GET vars submitted and the url is swapped out with the original one.  It looks pretty seemless.
 
+####Fully contained article directories
+Articles are added to the website by adding an article "package".  Article "packages" are in the following format:
+* Folder with the article directory name
+* .html file named the same as the directory
+* Any images used in the article or for the header
+
 ######Problems
 Preloading doesn't work on mobile devices because there is no "hover" event on a smartphone.  Mobile devices do not break the site, but they do not benefit from preloading.
 
@@ -24,4 +30,3 @@ Preloading doesn't work on mobile devices because there is no "hover" event on a
 * Article upload and automatic directory creation via web interface
 * Author cards
 * Dynamic suggested article footer area
-
