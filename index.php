@@ -48,10 +48,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li id="home" class="navlink"><a href="javascript:;">Home</a></li>
-                <li id="posts" class="navlink"><a href="javascript:;">Posts</a></li>
-                <li id="code" class="navlink"><a href="javascript:;">Code</a></li>
-                <li id="about" class="navlink"><a href="javascript:;">About</a></li>
+                <li id="home" class="navlink"><a href="#">Home</a></li>
+                <li id="puzzles" class="navlink"><a href="#">Puzzles</a></li>
+                <li id="about" class="navlink"><a href="#">About</a></li>
                 <li class=""><a href="mailto:3jackdaws@gmail.com">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

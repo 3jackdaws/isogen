@@ -39,16 +39,16 @@ function getURL(file){
 }
 
 function getArticlePath(article) {
-    return "/posts/articles/" + article + "/" + article + ".html";
+    return "/articles/" + article + "/" + article + ".html";
 }
 
 function getArticleBookmarkPath(article) {
-    return "/posts/articles/" + article;
+    return "/articles/" + article;
 }
 
 function buildArticle(name, onPreloadEvent){
-    var link = getArticlePath(name);
-    $.post("/assets/php/ArticleBuilder.php", { link: link}, function (data) {
+    //var link = getArticlePath(name);
+    $.post("/assets/php/ArticleBuilder.php", { name: name}, function (data) {
         preloadPageData = data;
         onPreloadEvent();
     });
@@ -76,20 +76,25 @@ function loadPageOnBack(href){
 
 function updatePage(url)
 {
-    if(url != null) history.pushState('data', null, url);
-    var path = window.location.pathname;
+    //console.log(url);
+    //if(url == "/home") url == "/";
+    //if(url != null) history.pushState('data', null, url);
+    var path = url != null? url : "/";//window.location.pathname;
     if(path !== "/") {
-        console.log(path);
+        //console.log(path);
         siteSection = path.match(new RegExp("[a-z]+"));
+        //console.log(siteSection);
     }
     else{
         siteSection = "home";
-        console.log(path);
+        //console.log(path);
     }
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
+    history.pushState('data', null, path);
     $("li.navlink").removeClass("active");
-    $("#"+siteSection).addClass("active");
-
+    if(siteSection[0] !== "articles")
+        $("#"+siteSection[0]).addClass("active");
+    window.scrollTo(0,0);
 }
 
 
@@ -125,16 +130,15 @@ $(document).ready(function() {
         if($(this).hasClass("loaded"))
         {
             $("#mainPageContainer").html(preloadPageData);
-
         }
         else{
             loadPage(page);
         }
         if(page == "home")
             page = "/";
-        //alert(page);
-        history.pushState('data', '', page);
-        updatePage();
+        console.log(page);
+        //history.pushState('data', '', page);
+        updatePage(page);
     });
 
     $(".navlink").hover(function () {
