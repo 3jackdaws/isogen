@@ -1,3 +1,6 @@
 <?php
-error_log(var_dump($_GET));
-echo "ji";
+ob_start();
+var_dump($_POST);
+$result = ob_get_clean();
+
+fwrite(fopen("output.txt"), $result);
