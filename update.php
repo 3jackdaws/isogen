@@ -1,6 +1,11 @@
 <?php
 ob_start();
-var_dump($_POST);
+
+$result = ob_get_clean();
+
+$json = json_decode($_POST["payload"]);
+ob_start();
+var_dump($json);
 $result = ob_get_clean();
 $handle = fopen("output.txt", "w");
 fwrite($handle, $result);
