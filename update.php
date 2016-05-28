@@ -5,7 +5,7 @@ ob_start();
 var_dump($json);
 $result = ob_get_clean();
 $handle = fopen("output.txt", "w");
-fwrite($handle, $result);
+fwrite($handle, $json);
 fclose($handle);
 #kill me, dsakjgl;fkns;lgn
 
