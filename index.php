@@ -33,7 +33,7 @@
         
     </style>
 
-</head>
+</head> 
 
 <body>
     <nav id="nav" class="navbar navbar-fixed-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 0.5px lightgray">
