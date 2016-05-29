@@ -31,7 +31,7 @@ function runCommand($cmd){
 	{
 		exec("/var/www/sites/isogen/updatesite.sh");
 	}
-}
+} 
 
 
 
