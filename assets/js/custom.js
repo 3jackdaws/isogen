@@ -22,7 +22,6 @@ function preloadPage(element){
         $(".loaded").removeClass("loaded");
         $.get(path, function (data) {
             preloadPageData = data;
-            //updatePage();
             element.removeClass("lock");
             element.addClass("loaded");
         });
@@ -59,6 +58,7 @@ function loadPageOnBack(href){
     {
         var article = href.replace(new RegExp("/.*articles/"), "")
         buildArticle(article, function () {
+            $("#mainPageContainer").html("");
             $("#mainPageContainer").html(preloadPageData);
             updatePage(getArticleBookmarkPath(article));
         });
@@ -76,10 +76,7 @@ function loadPageOnBack(href){
 
 function updatePage(url)
 {
-    //console.log(url);
-    //if(url == "/home") url == "/";
-    //if(url != null) history.pushState('data', null, url);
-    var path = url != null? url : "/";//window.location.pathname;
+    var path = url != null? url : "/";
     if(path !== "/") {
         //console.log(path);
         siteSection = path.match(new RegExp("[a-z]+"));
@@ -108,6 +105,7 @@ $(document).ready(function() {
     {
         buildArticle(article, function () {
             $(".loaded").removeClass("loaded");
+            $("#mainPageContainer").html("");
             $("#mainPageContainer").html(preloadPageData);
             updatePage(getArticleBookmarkPath(article));
         });
@@ -129,6 +127,7 @@ $(document).ready(function() {
         var page = $(this).children()[0].innerHTML.toLowerCase();
         if($(this).hasClass("loaded"))
         {
+            $("#mainPageContainer").html("");
             $("#mainPageContainer").html(preloadPageData);
         }
         else{
@@ -174,6 +173,7 @@ $(document).ready(function() {
         var link = $(this).attr("preload");
         if($(this).hasClass("loaded"))
         {
+            $("#mainPageContainer").html("");
             $("#mainPageContainer").html(preloadPageData);
             updatePage(getArticleBookmarkPath(link));
             console.log("Preload");
@@ -181,6 +181,7 @@ $(document).ready(function() {
 
             buildArticle(link, function () {
                 $(".loaded").removeClass("loaded");
+                $("#mainPageContainer").html("");
                 $("#mainPageContainer").html(preloadPageData);
                 updatePage(getArticleBookmarkPath(link));
             });

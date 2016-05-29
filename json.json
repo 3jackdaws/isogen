@@ -1,0 +1,301 @@
+object(stdClass)#1 (13) {
+  ["ref"]=>
+  string(17) "refs/heads/master"
+  ["before"]=>
+  string(40) "f4ae9881cd46ae0b3b0edf3eade8129e6bda7f15"
+  ["after"]=>
+  string(40) "27ca71a45fd0a9d8702b7ec3705efcff6b68c3e3"
+  ["created"]=>
+  bool(false)
+  ["deleted"]=>
+  bool(false)
+  ["forced"]=>
+  bool(false)
+  ["base_ref"]=>
+  NULL
+  ["compare"]=>
+  string(71) "https://github.com/3jackdaws/isogen/compare/f4ae9881cd46...27ca71a45fd0"
+  ["commits"]=>
+  array(1) {
+    [0]=>
+    object(stdClass)#2 (11) {
+      ["id"]=>
+      string(40) "27ca71a45fd0a9d8702b7ec3705efcff6b68c3e3"
+      ["tree_id"]=>
+      string(40) "fbb9bcd6858548ad8f5f363eacffc39ed1a51641"
+      ["distinct"]=>
+      bool(true)
+      ["message"]=>
+      string(10) "dafl;sdkfn"
+      ["timestamp"]=>
+      string(25) "2016-05-27T18:45:35-07:00"
+      ["url"]=>
+      string(83) "https://github.com/3jackdaws/isogen/commit/27ca71a45fd0a9d8702b7ec3705efcff6b68c3e3"
+      ["author"]=>
+      object(stdClass)#3 (3) {
+        ["name"]=>
+        string(10) "Ian Murphy"
+        ["email"]=>
+        string(20) "immur.50ae@gmail.com"
+        ["username"]=>
+        string(9) "3jackdaws"
+      }
+      ["committer"]=>
+      object(stdClass)#4 (3) {
+        ["name"]=>
+        string(10) "Ian Murphy"
+        ["email"]=>
+        string(20) "immur.50ae@gmail.com"
+        ["username"]=>
+        string(9) "3jackdaws"
+      }
+      ["added"]=>
+      array(0) {
+      }
+      ["removed"]=>
+      array(0) {
+      }
+      ["modified"]=>
+      array(1) {
+        [0]=>
+        string(10) "update.php"
+      }
+    }
+  }
+  ["head_commit"]=>
+  object(stdClass)#5 (11) {
+    ["id"]=>
+    string(40) "27ca71a45fd0a9d8702b7ec3705efcff6b68c3e3"
+    ["tree_id"]=>
+    string(40) "fbb9bcd6858548ad8f5f363eacffc39ed1a51641"
+    ["distinct"]=>
+    bool(true)
+    ["message"]=>
+    string(10) "dafl;sdkfn"
+    ["timestamp"]=>
+    string(25) "2016-05-27T18:45:35-07:00"
+    ["url"]=>
+    string(83) "https://github.com/3jackdaws/isogen/commit/27ca71a45fd0a9d8702b7ec3705efcff6b68c3e3"
+    ["author"]=>
+    object(stdClass)#6 (3) {
+      ["name"]=>
+      string(10) "Ian Murphy"
+      ["email"]=>
+      string(20) "immur.50ae@gmail.com"
+      ["username"]=>
+      string(9) "3jackdaws"
+    }
+    ["committer"]=>
+    object(stdClass)#7 (3) {
+      ["name"]=>
+      string(10) "Ian Murphy"
+      ["email"]=>
+      string(20) "immur.50ae@gmail.com"
+      ["username"]=>
+      string(9) "3jackdaws"
+    }
+    ["added"]=>
+    array(0) {
+    }
+    ["removed"]=>
+    array(0) {
+    }
+    ["modified"]=>
+    array(1) {
+      [0]=>
+      string(10) "update.php"
+    }
+  }
+  ["repository"]=>
+  object(stdClass)#8 (70) {
+    ["id"]=>
+    int(59058631)
+    ["name"]=>
+    string(6) "isogen"
+    ["full_name"]=>
+    string(16) "3jackdaws/isogen"
+    ["owner"]=>
+    object(stdClass)#9 (2) {
+      ["name"]=>
+      string(9) "3jackdaws"
+      ["email"]=>
+      string(34) "3jackdaws@users.noreply.github.com"
+    }
+    ["private"]=>
+    bool(false)
+    ["html_url"]=>
+    string(35) "https://github.com/3jackdaws/isogen"
+    ["description"]=>
+    string(21) "Personal website repo"
+    ["fork"]=>
+    bool(false)
+    ["url"]=>
+    string(35) "https://github.com/3jackdaws/isogen"
+    ["forks_url"]=>
+    string(51) "https://api.github.com/repos/3jackdaws/isogen/forks"
+    ["keys_url"]=>
+    string(59) "https://api.github.com/repos/3jackdaws/isogen/keys{/key_id}"
+    ["collaborators_url"]=>
+    string(74) "https://api.github.com/repos/3jackdaws/isogen/collaborators{/collaborator}"
+    ["teams_url"]=>
+    string(51) "https://api.github.com/repos/3jackdaws/isogen/teams"
+    ["hooks_url"]=>
+    string(51) "https://api.github.com/repos/3jackdaws/isogen/hooks"
+    ["issue_events_url"]=>
+    string(68) "https://api.github.com/repos/3jackdaws/isogen/issues/events{/number}"
+    ["events_url"]=>
+    string(52) "https://api.github.com/repos/3jackdaws/isogen/events"
+    ["assignees_url"]=>
+    string(62) "https://api.github.com/repos/3jackdaws/isogen/assignees{/user}"
+    ["branches_url"]=>
+    string(63) "https://api.github.com/repos/3jackdaws/isogen/branches{/branch}"
+    ["tags_url"]=>
+    string(50) "https://api.github.com/repos/3jackdaws/isogen/tags"
+    ["blobs_url"]=>
+    string(61) "https://api.github.com/repos/3jackdaws/isogen/git/blobs{/sha}"
+    ["git_tags_url"]=>
+    string(60) "https://api.github.com/repos/3jackdaws/isogen/git/tags{/sha}"
+    ["git_refs_url"]=>
+    string(60) "https://api.github.com/repos/3jackdaws/isogen/git/refs{/sha}"
+    ["trees_url"]=>
+    string(61) "https://api.github.com/repos/3jackdaws/isogen/git/trees{/sha}"
+    ["statuses_url"]=>
+    string(60) "https://api.github.com/repos/3jackdaws/isogen/statuses/{sha}"
+    ["languages_url"]=>
+    string(55) "https://api.github.com/repos/3jackdaws/isogen/languages"
+    ["stargazers_url"]=>
+    string(56) "https://api.github.com/repos/3jackdaws/isogen/stargazers"
+    ["contributors_url"]=>
+    string(58) "https://api.github.com/repos/3jackdaws/isogen/contributors"
+    ["subscribers_url"]=>
+    string(57) "https://api.github.com/repos/3jackdaws/isogen/subscribers"
+    ["subscription_url"]=>
+    string(58) "https://api.github.com/repos/3jackdaws/isogen/subscription"
+    ["commits_url"]=>
+    string(59) "https://api.github.com/repos/3jackdaws/isogen/commits{/sha}"
+    ["git_commits_url"]=>
+    string(63) "https://api.github.com/repos/3jackdaws/isogen/git/commits{/sha}"
+    ["comments_url"]=>
+    string(63) "https://api.github.com/repos/3jackdaws/isogen/comments{/number}"
+    ["issue_comment_url"]=>
+    string(70) "https://api.github.com/repos/3jackdaws/isogen/issues/comments{/number}"
+    ["contents_url"]=>
+    string(62) "https://api.github.com/repos/3jackdaws/isogen/contents/{+path}"
+    ["compare_url"]=>
+    string(69) "https://api.github.com/repos/3jackdaws/isogen/compare/{base}...{head}"
+    ["merges_url"]=>
+    string(52) "https://api.github.com/repos/3jackdaws/isogen/merges"
+    ["archive_url"]=>
+    string(68) "https://api.github.com/repos/3jackdaws/isogen/{archive_format}{/ref}"
+    ["downloads_url"]=>
+    string(55) "https://api.github.com/repos/3jackdaws/isogen/downloads"
+    ["issues_url"]=>
+    string(61) "https://api.github.com/repos/3jackdaws/isogen/issues{/number}"
+    ["pulls_url"]=>
+    string(60) "https://api.github.com/repos/3jackdaws/isogen/pulls{/number}"
+    ["milestones_url"]=>
+    string(65) "https://api.github.com/repos/3jackdaws/isogen/milestones{/number}"
+    ["notifications_url"]=>
+    string(85) "https://api.github.com/repos/3jackdaws/isogen/notifications{?since,all,participating}"
+    ["labels_url"]=>
+    string(59) "https://api.github.com/repos/3jackdaws/isogen/labels{/name}"
+    ["releases_url"]=>
+    string(59) "https://api.github.com/repos/3jackdaws/isogen/releases{/id}"
+    ["deployments_url"]=>
+    string(57) "https://api.github.com/repos/3jackdaws/isogen/deployments"
+    ["created_at"]=>
+    int(1463518838)
+    ["updated_at"]=>
+    string(20) "2016-05-23T17:11:08Z"
+    ["pushed_at"]=>
+    int(1464399938)
+    ["git_url"]=>
+    string(37) "git://github.com/3jackdaws/isogen.git"
+    ["ssh_url"]=>
+    string(35) "git@github.com:3jackdaws/isogen.git"
+    ["clone_url"]=>
+    string(39) "https://github.com/3jackdaws/isogen.git"
+    ["svn_url"]=>
+    string(35) "https://github.com/3jackdaws/isogen"
+    ["homepage"]=>
+    string(10) "isogen.net"
+    ["size"]=>
+    int(8186)
+    ["stargazers_count"]=>
+    int(1)
+    ["watchers_count"]=>
+    int(1)
+    ["language"]=>
+    string(3) "PHP"
+    ["has_issues"]=>
+    bool(true)
+    ["has_downloads"]=>
+    bool(true)
+    ["has_wiki"]=>
+    bool(true)
+    ["has_pages"]=>
+    bool(false)
+    ["forks_count"]=>
+    int(0)
+    ["mirror_url"]=>
+    NULL
+    ["open_issues_count"]=>
+    int(0)
+    ["forks"]=>
+    int(0)
+    ["open_issues"]=>
+    int(0)
+    ["watchers"]=>
+    int(1)
+    ["default_branch"]=>
+    string(6) "master"
+    ["stargazers"]=>
+    int(1)
+    ["master_branch"]=>
+    string(6) "master"
+  }
+  ["pusher"]=>
+  object(stdClass)#10 (2) {
+    ["name"]=>
+    string(9) "3jackdaws"
+    ["email"]=>
+    string(34) "3jackdaws@users.noreply.github.com"
+  }
+  ["sender"]=>
+  object(stdClass)#11 (17) {
+    ["login"]=>
+    string(9) "3jackdaws"
+    ["id"]=>
+    int(13342670)
+    ["avatar_url"]=>
+    string(52) "https://avatars.githubusercontent.com/u/13342670?v=3"
+    ["gravatar_id"]=>
+    string(0) ""
+    ["url"]=>
+    string(38) "https://api.github.com/users/3jackdaws"
+    ["html_url"]=>
+    string(28) "https://github.com/3jackdaws"
+    ["followers_url"]=>
+    string(48) "https://api.github.com/users/3jackdaws/followers"
+    ["following_url"]=>
+    string(61) "https://api.github.com/users/3jackdaws/following{/other_user}"
+    ["gists_url"]=>
+    string(54) "https://api.github.com/users/3jackdaws/gists{/gist_id}"
+    ["starred_url"]=>
+    string(61) "https://api.github.com/users/3jackdaws/starred{/owner}{/repo}"
+    ["subscriptions_url"]=>
+    string(52) "https://api.github.com/users/3jackdaws/subscriptions"
+    ["organizations_url"]=>
+    string(43) "https://api.github.com/users/3jackdaws/orgs"
+    ["repos_url"]=>
+    string(44) "https://api.github.com/users/3jackdaws/repos"
+    ["events_url"]=>
+    string(55) "https://api.github.com/users/3jackdaws/events{/privacy}"
+    ["received_events_url"]=>
+    string(54) "https://api.github.com/users/3jackdaws/received_events"
+    ["type"]=>
+    string(4) "User"
+    ["site_admin"]=>
+    bool(false)
+  }
+}
