@@ -21,7 +21,7 @@ foreach ($messages as $message) {
 			echo $cmd . "\n";
 		}
 	}
-}
+} 
 
 #kill me, dsakjgl;fkns;lgn 
 
