@@ -1,9 +1,9 @@
 <?php
-$handle = fopen("json.txt", "r");
+//$handle = fopen("json.txt", "r");
 //echo "opening json<br>";
-$string = fread($handle, filesize("json.txt"));
+//$string = fread($handle, filesize("json.txt"));
 //var_dump($string);
-$json = json_decode($string);
+$json = json_decode($_POST["payload"]);
 //var_dump($json);
 echo "\n\n\n\n";
 //var_dump($json);
