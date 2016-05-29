@@ -33,6 +33,3 @@ function runCommand($cmd){
 		exec("git pull");
 	}
 } 
-
-
-
