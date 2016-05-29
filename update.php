@@ -30,6 +30,6 @@ function runCommand($cmd){
 	if(strtolower($cmd) == "update")
 	{
 		exec("/var/www/sites/isogen/updatesite.sh");
-		exec("git pull");
+		//exec("git pull");
 	}
 } 
