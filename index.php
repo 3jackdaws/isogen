@@ -128,10 +128,6 @@
             link = "/home/home.php";
             url = "/";
         }
-        
-        iso.onload(function(){
-            
-        });
     </script>
     
 
