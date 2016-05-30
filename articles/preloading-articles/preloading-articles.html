@@ -1,18 +1,27 @@
 #pcrop.jpg#
 
-<h1>Preloading Web Articles for a Faster Feeling Website</h1>
-<h2>Preloading in the background can make an article heavy site feel light and modern.</h2>
+<h1>How to Instantly Load a Web Page</h1>
+<h2>Preloading web pages solves a problem that didnt exist and introduces several new, very real problems.</h2>
 <hr>
 <p>
-    Currently, only two virtual reality platforms exist on Windows PCs: the Oculus Rift and the SteamVR-powered HTC Vive. Each set has its strengths and weaknesses, but until recently, they at least both offered limited compatibility with their rival's software stores. Oculus headset users can pick through compatible games on the SteamVR store and interface, while HTC Vive wearers could install a fan-made patch to play Oculus software.
+    When I set out to design this site, I originally just wanted it to be a clean, minimalist place to serve up posts I had written.  However, my constant desire to make things better made me reconsider the mechanism which posts and article are served.  Visitors will only read one page at a time, so what's the point of having multiple locations on the website?  What if I just retrieved the page when the user requests it and swapped it out with the previous page?  Even better, what if the page the user wanted was already loaded in the background and by clicking on the link for that page, it could be instantly displayed?
 </p>
 <p>
-    SteamVR still plays nice, but the other side changed its tune on Friday with a major Oculus app update for Windows PCs, complete with advertised "updates to platform integrity checks." It didn't take long for the team behind that aforementioned HTC Vive patch, dubbed "Revive," to announce that those "integrity checks" appeared to block users' access to Oculus games on unauthorized hardware.
+	That train of thought got me to the idea of preloading, all that was left was the implementation details.  Probably the easiest way to load one page into another would be through the use of iframes, but I have done web dev before so the thought of ever using iframes did not cross my mind at the time.  I instantly thought of jQuery's hover and click event handlers.  Just add a hover and click event handler to every element with .preload class and we're off to the races.  Unfortunately, it's not just that easy.  
 </p>
 <p>
-    "Oculus has added a check [to look for] whether the Oculus Rift headset is connected to their Oculus Platform DRM," Revive developer "CrossVR" posted to the Vive Reddit community on Friday. "While Revive fools the application [into] thinking the Rift is connected, it does nothing to make the actual Oculus platform think the headset is connected."
+	I can preload a page well enough on a mouseover event and swap out the loaded page on a click event, but the address bar url never changes.  It is now impossible to bookmark pages and it becomes apparent that the web page is never actually changing.  Luckily, HTML5 introduces several window history manipulation methods, namely widow.pushState and window.replaceState.  These methods can be used to make it seem like the browser location has changed, while in reality, it has not changed at all.  This fixed the bookmarking problem, sort of.  A page can be bookmarked, but when the bookmark is actually visited, the page is improperly loaded.  The contents of the page only look correct when inserted into the containing divs of the home page.  
 </p>
 <p>
-    When asked about the update, Oculus spokesperson Jim Redner told Ars that the app's new entitlement check was added "to curb piracy and protect games and apps that developers have worked so hard to make. This update wasn’t targeted at a specific hack." He also claimed that the entitlement check's functionality is "common in commerce platforms that validates a user has purchased a piece of software." However, the Revive team's representative alleged that the issue isn't a check for legitimate software purchases but for whether Oculus hardware is connected—and even suggests a workaround of attaching an Oculus development kit model so that a Revive-patched game can then operate normally on an HTC Vive headset. We have asked Oculus to clarify these contradicting claims and will update this report with any response.
+	The page loading problem is fixed with a little PHP.
+</p>
+<pre><code>
+	header('Location: http://' . 
+					$_SERVER["HTTP_HOST"] . 
+					"/?article=" . 
+					basename(__DIR__));
+</code></pre>
+<p>
+	This index.php file, which is loaded by apache whenever the directory is accessed, simply redirects the browser to the server root with some GET variables to tell the page what article to load.  The home page loads the article with the correct formatting and changes the url to reflect the bookmark. Ayy, preloading.  All of this was done using jQuery, but I'm currently writing a small library in vanilla JavaScript to do the same thing.  It can be found on <a href="https://github.com/3jackdaws/iso-preloading" target="_blank">my GitHub</a>.
 </p>
 <hr>

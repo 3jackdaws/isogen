@@ -15,8 +15,8 @@ if(isset($article_name))
 
 
         <div class="post-card">
-            <div class="overlay article-preload" preload="<?=$article_name?>"></div>
-            <div class="img" style="background-image: url(<?=$article["header_image"]?>)"/>
+            <div class="overlay iso-preload" preload="<?=$article_name?>" preload-class="article"></div>
+            <div class="img" style="background-image: url(<?=$article["header_image"]?>)"></div>
             <br>
             <div class="container">
                 <?=$article["h1"]?>

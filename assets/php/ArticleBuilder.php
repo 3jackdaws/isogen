@@ -6,7 +6,7 @@
  * Time: 11:40 PM
  */
 include_once("iso-includes/ArticleParser.php");
-$article_name = $_POST["name"];
+$article_name = $_GET["name"];
 
 if(isset($article_name))
 {

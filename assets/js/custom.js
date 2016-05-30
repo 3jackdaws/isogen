@@ -8,7 +8,7 @@ function loadPage(page) {
     var path = getURL(page);
     $.get(path, function (data) {
         $("#mainPageContainer").html(data);
-        updatePage();
+        updatePage(page);
     });
 }
 
@@ -76,21 +76,24 @@ function loadPageOnBack(href){
 
 function updatePage(url)
 {
+
     var path = url != null? url : "/";
+    console.log("URL: " + url + ", PATH: " + path);
     if(path !== "/") {
         //console.log(path);
-        siteSection = path.match(new RegExp("[a-z]+"));
-        //console.log(siteSection);
+        var matches = path.match(new RegExp("[a-z]+"));
+        if(matches.length > 1)
+        siteSection = matches[0];
+        console.log(siteSection);
     }
     else{
         siteSection = "home";
-        //console.log(path);
+        console.log(siteSection);
     }
-    //window.scrollTo(0, 0);
     history.pushState('data', null, path);
     $("li.navlink").removeClass("active");
-    if(siteSection[0] !== "articles")
-        $("#"+siteSection[0]).addClass("active");
+    if(siteSection != "articles")
+        $("#"+siteSection).addClass("active");
     window.scrollTo(0,0);
 }
 
