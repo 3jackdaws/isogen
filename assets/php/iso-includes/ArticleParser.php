@@ -3,7 +3,7 @@
 	{
 		$article = [];
 		$server_path = "/var/www/sites/isogen/";
-		$article["text_path"] = $server_path . "articles/" . $article_name . "/" . $article_name . ".html";
+		$article["text_path"] = $server_path . "articles/" . $article_name . "/markup.html";
 	    $file = fopen($article["text_path"], "r");
 	    $article["text"] = fread($file, filesize($article["text_path"]));
 	    preg_match("/(?<=#).+(?=#)/", $article["text"], $matches);
