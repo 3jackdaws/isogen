@@ -88,6 +88,7 @@ var iso = {
 	},
 
 	clickEvent: function(element){
+		console.log("Click");
 		if(element.getAttribute("loaded") == "true"){
 			iso.swapPage();
 		}
@@ -96,7 +97,7 @@ var iso = {
 				iso.swapPage();
 			});
 		}
-		iso.profile();
+		
 		
 	},
 
@@ -105,6 +106,7 @@ var iso = {
 		history.pushState("null", null, preloadURL);
 		console.log("Push: " + preloadURL);
 		window.scrollTo(0,0);
+		iso.profile();
 	},
 
 	installPreloadClass: function(classname, resourceDecoder, bookmarkDecoder, insertid){

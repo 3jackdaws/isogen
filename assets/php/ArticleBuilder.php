@@ -14,7 +14,7 @@ if(isset($article_name))
     $a_front_tag = "<article style=\"max-width: 700px; margin: 0 auto; font-size: 20px\">";
     $a_back_tag = "</article>";
     echo $article["header_img_div"];
-    echo $a_front_tag . $article["text"] . $a_back_tag;
+    echo $a_front_tag . $article["text"] . "<hr>" . $a_back_tag;
 }
 
 

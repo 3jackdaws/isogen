@@ -38,9 +38,9 @@
 <body>
     <nav id="nav" class="navbar navbar-fixed-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 0.5px lightgray">
         <div class="navbar-header">
-            <button type="button" onclick="collapse()" class="navbar-toggle collapsed" style="color:black" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" onclick="collapse()" class="navbar-toggle collapsed" style="color:black" >
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar" style="color: #000;"></span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -54,7 +54,7 @@
                 <li class=""><a href="mailto:3jackdaws@gmail.com">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li id="ddown">
+                <li>
                     <form class="navbar-form form-inline">
                         <input class="form-control" name="search-query" placeholder="Search Posts"/>
                     </form>
@@ -87,8 +87,8 @@
         }
 
         function navlinkURLDecoder(link){
-            if(link == "home") return "/";
-            return link;
+            return link == "home" ? "/" : link;
+            
         }
 
         function navlinkResourceDecoder(link){
@@ -103,15 +103,9 @@
                 iso.profile();
             });
         });
-
         iso.on("popstate", function(event){iso.onHistoryBackEvent(event)});
-
         iso.installPreloadClass("navlink", navlinkResourceDecoder, navlinkURLDecoder, "mainPageContainer");
-
         iso.installPreloadClass("article", articleResourceDecoder, articleULRDecoder,"mainPageContainer");
-
-
-
         var page = "<?=$loadpage?>";
         var article = "<?=$loadarticle?>";
         var link, url;
@@ -129,8 +123,4 @@
             url = "/";
         }
     </script>
-    
-
-    
-    
 </body>
