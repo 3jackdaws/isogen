@@ -83,8 +83,6 @@ var iso = {
 				if(onLoadedEvent != null) onLoadedEvent();
 			});
 		}
-
-		
 	},
 
 	clickEvent: function(element){
