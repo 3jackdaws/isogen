@@ -1,8 +1,11 @@
-#pcrop.jpg#
+<header>pcrop.jpg</header>
 
 <h1>How to Instantly Load a Web Page</h1>
 <h2>Preloading web pages solves a problem that didnt exist and introduces several new, very real problems.</h2>
-<hr>
+<author>Ian Murphy</author>
+<date>May 30, 2016</date>
+
+<article>
 <p>
     When I set out to design this site, I originally just wanted it to be a clean, minimalist place to serve up posts I had written.  However, my constant desire to make things better made me reconsider the mechanism which posts and article are served.  Visitors will only read one page at a time, so what's the point of having multiple locations on the website?  What if I just retrieved the page when the user requests it and swapped it out with the previous page?  Even better, what if the page the user wanted was already loaded in the background and by clicking on the link for that page, it could be instantly displayed?
 </p>
@@ -24,3 +27,4 @@
 <p>
 	This index.php file, which is loaded by apache whenever the directory is accessed, simply redirects the browser to the server root with some GET variables to tell the page what article to load.  The home page loads the article with the correct formatting and changes the url to reflect the bookmark. Ayy, preloading.  All of this was done using jQuery, but I'm currently writing a small library in vanilla JavaScript to do the same thing.  It can be found on <a href="https://github.com/3jackdaws/iso-preloading" target="_blank">my GitHub</a>.
 </p>
+</article>

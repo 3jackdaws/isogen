@@ -5,8 +5,6 @@
     {
         $loadpage = "";
     }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +34,7 @@
 </head> 
 
 <body>
-    <nav id="nav" class="navbar navbar-fixed-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 0.5px lightgray">
+    <nav id="nav" class="navbar navbar-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 1px grey">
         <div class="navbar-header">
             <button type="button" onclick="collapse()" class="navbar-toggle collapsed" style="color:black" >
                 <span class="sr-only">Toggle navigation</span>
@@ -56,7 +54,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form class="navbar-form form-inline">
-                        <input class="form-control" name="search-query" placeholder="Search Posts"/>
+                        <input class="form-control" name="search" placeholder="Search Posts"/>
                     </form>
                 </li>
             </ul>

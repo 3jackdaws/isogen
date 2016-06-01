@@ -103,7 +103,7 @@ var iso = {
 		this.loadToElement.innerHTML = cachedPreloadData;
 		history.pushState("null", null, preloadURL);
 		console.log("Push: " + preloadURL);
-		window.scrollTo(0,0);
+		iso.scrollToTop(300);
 		iso.profile();
 	},
 
@@ -137,6 +137,22 @@ var iso = {
 
 	on: function(listener, onEvent){
 		window.addEventListener(listener, onEvent);
-	}
+	},
+
+	scrollToTop: function(scrollDuration) {
+        const   scrollHeight = window.scrollY,
+                scrollStep = Math.PI / ( scrollDuration / 15 ),
+                cosParameter = scrollHeight / 2;
+        var     scrollCount = 0,
+                scrollMargin,
+                scrollInterval = setInterval( function() {
+                    if ( window.scrollY != 0 ) {
+                        scrollCount = scrollCount + 1;  
+                        scrollMargin = cosParameter - cosParameter * Math.cos( scrollCount * scrollStep );
+                        window.scrollTo( 0, ( scrollHeight - scrollMargin ) );
+                    } 
+                    else clearInterval(scrollInterval); 
+                }, 15 );
+        }
 }
 

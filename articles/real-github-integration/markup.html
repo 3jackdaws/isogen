@@ -1,8 +1,12 @@
-#lake.jpg#
+<header>lake.jpg</header>
 
 <h1>I Never Want to Touch My Server Again, GitHub Webhooks to the Rescue</h1>
 <h2>Using git commit messages to issue commands to a remote server.</h2>
-<hr>
+
+<author>Ian Murphy</author>
+<date>May 30, 2016</date>
+
+<article>
 <p>
 	Previously, when I needed to update the live website on my actual webserver, I would spool up Filezilla and start double clicking on the files that I remembered I had changed.  There must be a better way to do this.  Aha! I thought.  This website's source code is kept on <a href="https://github.com/3jackdaws/isogen" target="_blank">GitHub</a>. I could just install git on the server and git pull whenever I needed to update.  However, that involves sshing into the webserver, navigating to the site directory and <code>git pull</code>ing from there.  That method is no better than FTPing all the files over.  
 </p>
@@ -13,3 +17,5 @@
 </p>
 <p>
 	For the string <code>"Just added some cool new features. KRONOS: 'update'"</code>, the matched strings will just be: 'update'.  This can then be parsed for individual commands.  So far, only "update" does anything, but I plan to add more commands when I can figure out exactly what I need.  Anyways, the benefits of this system should be obvious: I never need to directly interact with my webserver again, at least until this inexplicitly breaks.
+</p>
+</article>

@@ -16,6 +16,7 @@ $article = ArticleParser($featured_article);
 			<h1>
 				<?=$article["h1"]?>
 			</h1>
+			<author><?=$article["author"]?></author> - <date><?=$article["date"]?></date>
 			<h2>
 				<?=$article["h2"]?>
 			</h2>

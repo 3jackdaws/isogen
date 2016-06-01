@@ -11,10 +11,22 @@ $article_name = $_GET["name"];
 if(isset($article_name))
 {
     $article = ArticleParser($article_name);
-    $a_front_tag = "<article style=\"max-width: 700px; margin: 0 auto; font-size: 20px\">";
+
+    $a_front_tag = "<article >";
     $a_back_tag = "</article>";
-    echo $article["header_img_div"];
-    echo $a_front_tag . $article["text"] . "<hr>" . $a_back_tag;
+    $a_hdr_frnt = "<div class='article-img' style=\"background-image: url('";
+    $a_hdr_rear = "')\"></div>";
+    echo $a_hdr_frnt . $article["header_image"] . $a_hdr_rear;
+    echo $a_front_tag . 
+    		$article["h1"] .
+    		"<author>" . $article["author"] . "</author>" .
+    		" - " .
+    		"<date>" . $article["date"] . "</date>" . 
+    		"<hr>" . 
+    		$article["h2"] .
+    		$article["text"] . 
+    		"<hr>" . 
+    	$a_back_tag;
 }
 
 
