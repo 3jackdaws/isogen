@@ -47,7 +47,7 @@ var iso = {
    	getPreloadElements: function(){
 		iso.allPreElem = document.getElementsByClassName("iso-preload");
 		while(iso.allPreElem.length>0) {
-			
+			iso.allPreElem[0].addEventListener("touchstart", function(){iso.hoverEvent(this)}, false);
 			iso.allPreElem[0].addEventListener("mouseover", function(){iso.hoverEvent(this)});
 			iso.allPreElem[0].addEventListener("mousedown", function(){iso.clickEvent(this)});
 			iso.allPreElem[0].className = iso.allPreElem[0].className.replace(new RegExp("iso-preload"), "");
