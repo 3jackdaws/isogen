@@ -18,12 +18,12 @@ if(isset($article_name))
     $a_hdr_rear = "')\"></div>";
     echo $a_hdr_frnt . $article["header_image"] . $a_hdr_rear;
     echo $a_front_tag . 
-    		$article["h1"] .
+    		"<h1>" . $article["h1"] . "</h1>" .
     		"<author>" . $article["author"] . "</author>" .
     		" - " .
     		"<date>" . $article["date"] . "</date>" . 
     		"<hr>" . 
-    		$article["h2"] .
+    		"<h2>" . $article["h2"] . "</h2>" .
     		$article["text"] . 
     		"<hr>" . 
     	$a_back_tag;

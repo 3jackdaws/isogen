@@ -1,7 +1,7 @@
 <?php
 	function ArticleParser($article_name)
 	{
-		$article = [];
+		$article["name"] = $article_name;
 		$server_path = "/var/www/sites/isogen/";
 		$article["text_path"] = $server_path . "articles/" . $article_name . "/markup.html";
 
@@ -12,10 +12,10 @@
 	    preg_match("#(?<=\<header>).*(?=</header>)#", $text, $matches);
 	    $article["header_image"] = "/articles/" . $article_name . "/" . $matches[0];
 	   	
-	    preg_match("#<h1>.*</h1>#", $text, $matches);
+	    preg_match("#(?<=\<h1>).*(?=</h1>)#", $text, $matches);
 	    $article["h1"] = $matches[0];
 
-	    preg_match("#<h2>.*</h2>#", $text, $matches);
+	    preg_match("#(?<=\<h2>).*(?=</h2>)#", $text, $matches);
 	    $article["h2"] = $matches[0];
 
 	    preg_match("#(?<=\<author>).*(?=</author>)#", $text, $matches);
