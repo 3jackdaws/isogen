@@ -1,5 +1,5 @@
 #!/bin/bash
-git stash
-date >> gitlog.txt
-git pull >> gitlog.txt
-echo "--------------------" >> gitlog.txt
+date >> ../isogen.txt
+git reset fetch --all
+git reset --hard origin/master >> ../isogen.txt
+echo "--------------------" >> ../isogen.txt
