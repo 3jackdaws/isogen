@@ -31,12 +31,13 @@ function GenerateCardFromArticleArray($article)
 {
     ob_start();
     ?>
-    <div class="post-card">
+    <div class="post-card ">
         <div class="overlay iso-preload" preload="<?=$article["name"]?>" preload-class="article"></div>
-        <div class="img" style="background-image: url(<?=$article["header_image"]?>)"></div>
+        <div class="img" style="background-image: url(<?=$article['header_image']?>)"></div>
         <br>
         <div class="container">
             <h1><?=$article["h1"]?></h1>
+            <center><author><?=$article["author"]?></author> - <date><?=$article["date"]?></date></center>
             <h2><?=$article["h2"]?></h2>
         </div>
     </div>
