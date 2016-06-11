@@ -23,7 +23,7 @@ function GenerateCardFromName($name)
             <?=$article["h2"]?>
         </div>
     </div>
-    <?
+    <?php
     return ob_get_clean();
 }
 
@@ -41,7 +41,7 @@ function GenerateCardFromArticleArray($article)
             <h2><?=$article["h2"]?></h2>
         </div>
     </div>
-    <?
+    <?php
     return ob_get_clean();
 }
 
@@ -73,14 +73,9 @@ function GenerateCardsByKey($num, $orderBy, $searchKey){
         ?>
         <div class="col-lg-6">
             <?=$column[$i]?>
-            
         </div>
-
         <?php
     }
-
 }
 
-function CreateCardsByMostRecent(){
-
-}
+?>
