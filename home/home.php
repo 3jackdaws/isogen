@@ -6,7 +6,7 @@
 
     <div id="card-div" class="container-fluid" style="max-width: 900px; padding: 0;">
 
-            <?  include "/var/www/sites/isogen/assets/php/CardBuilder.php";
+            <?php  include "/var/www/sites/isogen/assets/php/CardBuilder.php";
                 GenerateCardsByKey();
             ?>
 
