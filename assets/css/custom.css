@@ -63,7 +63,7 @@ article date{
 
 .img{
     width: 100%;
-    height: 100%;
+    height: 200px;
     min-height: 150px;
     background-size: cover;
 }

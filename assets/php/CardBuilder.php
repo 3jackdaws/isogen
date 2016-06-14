@@ -15,7 +15,7 @@ function GenerateCardFromName($name)
     ob_start();
     ?>
     <div class="post-card">
-        <div class="overlay iso-preload" preload="<?=$article_name?>" preload-class="article"></div>
+        <div class="overlay" href="/articles/<?=$article_name?>"></div>
         <div class="img" style="background-image: url(<?=$article["header_image"]?>)"></div>
         <br>
         <div class="container">
@@ -32,7 +32,7 @@ function GenerateCardFromArticleArray($article)
     ob_start();
     ?>
     <div class="post-card ">
-        <div class="overlay iso-preload" preload="<?=$article["name"]?>" preload-class="article"></div>
+        <div class="overlay" onclick="javascript:window.location='/articles/<?=$article["name"]?>'"></div>
         <div class="img" style="background-image: url(<?=$article['header_image']?>)"></div>
         <br>
         <div class="container">
