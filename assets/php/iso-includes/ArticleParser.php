@@ -2,7 +2,7 @@
 	function ArticleParser($article_name)
 	{
 		$article["name"] = $article_name;
-		$server_path = "/var/www/sites/isogen/";
+		$server_path = $_SERVER['WEBROOT'];
 		$article["text_path"] = $server_path . "articles/" . $article_name . "/markup.html";
 
 		#Open and Read in File

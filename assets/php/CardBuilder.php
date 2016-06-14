@@ -7,7 +7,7 @@
  */
 include_once "iso-includes/ArticleParser.php";
 include_once "iso-includes/IsogenDatabase.php";
-define("ARTICLE_PATH", "/var/www/sites/isogen/articles");
+define("ARTICLE_PATH", $_SERVER['WEBROOT'] . "articles");
 
 function GenerateCardFromName($name)
 {

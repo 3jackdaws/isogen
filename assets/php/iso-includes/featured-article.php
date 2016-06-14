@@ -1,6 +1,6 @@
 <?php
 include_once("ArticleParser.php");
-$handle = fopen("/var/www/sites/isogen/articles/latest.txt", "r");
+$handle = fopen($_SERVER['WEBROOT'] . "articles/latest.txt", "r");
 $featured_article = fgets($handle);
 $article = ArticleParser($featured_article);
 
