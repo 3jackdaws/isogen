@@ -36,7 +36,7 @@
 </head> 
 
 <body>
-    <nav id="nav" class="navbar navbar-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 1px grey">
+    <nav id="nav" class="navbar navbar-fixed-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 1px grey">
         <div class="navbar-header">
             <button type="button" onclick="collapse()" class="navbar-toggle collapsed" style="color:black" >
                 <span class="sr-only">Toggle navigation</span>
