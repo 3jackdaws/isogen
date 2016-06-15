@@ -2,8 +2,8 @@
 	function ArticleParser($article_name)
 	{
 		$article["name"] = $article_name;
-		$server_path = $_SERVER['WEBROOT'];
-		$article["text_path"] = $server_path . "articles/" . $article_name . "/markup.html";
+		$server_path = realpath($_SERVER['DOCUMENT_ROOT']);
+		$article["text_path"] = $server_path . "/articles/" . $article_name . "/markup.html";
 
 		#Open and Read in File
 	    $file = fopen($article["text_path"], "r");
