@@ -12,7 +12,7 @@ $article = ArticleParser($featured_article);
 	
 		<div class="placard">
 			<div class="inner"></div>
-			<div class="overlay iso-preload" preload="<?=$featured_article?>" preload-class="article"></div>
+			<a class="overlay" href="/articles/<?=$featured_article?>"></a>
 			<h1>
 				<?=$article["h1"]?>
 			</h1>

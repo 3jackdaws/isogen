@@ -32,7 +32,7 @@ function GenerateCardFromArticleArray($article)
     ob_start();
     ?>
     <div class="post-card ">
-        <div class="overlay" onclick="javascript:window.location='/articles/<?=$article["name"]?>'"></div>
+        <a class="overlay" href="/articles/<?=$article["name"]?>"></a>
         <div class="img" style="background-image: url(<?=$article['header_image']?>)"></div>
         <br>
         <div class="container">
