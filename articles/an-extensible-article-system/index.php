@@ -1,3 +1,7 @@
+<?php
+$basepath = realpath($_SERVER['DOCUMENT_ROOT']);
+?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,68 +14,25 @@
     <title>
         Isogen
     </title>
-
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <link href="/assets/css/custom.css" rel="stylesheet">
     <script src="/assets/js/instaclick.js" data-no-instant></script>
-   
     <script src="/assets/js/ip2.js"></script>
-    <script type="text/javascript">
-        function collapse(){
-            var navbar = document.getElementById("navbar");
-            var regex = new RegExp(" collapse");
-            if(navbar.className.match(regex))
-                navbar.className = navbar.className.replace(regex, "");
-            else
-                navbar.className += " collapse";
-        }
-    </script>
-    <script>
-    
-        
-            
-</script>
-
-
 </head> 
 
 <body>
-    <nav id="nav" class="navbar navbar-fixed-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 1px grey">
-        <div class="navbar-header">
-            <button type="button" onclick="collapse()" class="navbar-toggle collapsed" style="color:black" >
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" style="font-size: 2em; font-family: serif;color: black;" href="#">ISOGEN</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li id="home" class="navlink active"><a href="/">Home</a></li>
-                <li id="puzzles" class="navlink"><a href="/puzzles">Puzzles</a></li>
-                <li id="about" class="navlink"><a href="/about">About</a></li>
-                <li class=""><a href="mailto:3jackdaws@gmail.com">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <form class="navbar-form form-inline">
-                        <input class="form-control" name="search" placeholder="Search Posts"/>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php
+        include($basepath . '/assets/comp/navbar.html');
+    ?>
     
     <div id="main" class="container-fluid" style="padding:0; margin: 0">
-
+        <?php
+            $_GET['name'] = basename(__DIR__);
+            include($basepath . '/assets/php/ArticleBuilder.php');
+        ?>
     </div>
 </body>
-<script type="text/javascript">
-	$.get("/assets/php/ArticleBuilder.php?name=<?=basename(__DIR__)?>", function(data){
-            document.getElementById("main").innerHTML = data;
-        });
-</script>
+
     
 
 
