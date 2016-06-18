@@ -59,6 +59,7 @@ class MainPage extends AbstractPage{
 
             include("DBArticle.php");
             $db = new DBArticle();
+            
             $art = $db->getFeaturedArticle();
             ?>
             <div class="img" style="background-image: url('<?=$art["image"]?>');"></div>
@@ -86,13 +87,12 @@ class MainPage extends AbstractPage{
     }
     public function createPage()
     {
-        $start = microtime(true);
+        
         $this->writeHead();
         $this->writeNavbar();
         $this->writeBody();
         $this->writeFooter();
-        $end = microtime(true);
-        WebConsole::Log("Took " . (($end - $start)) . " milliseconds to create page.");
+        
     }
 }
 

@@ -58,8 +58,11 @@ class DBArticle
     }
     
     public function getAllArticles(){
+        $start = microtime(true);
         $result = $this->_connection->query("SELECT * FROM iso_articles;");
         $this->_articleCache = $result->fetchAll(PDO::FETCH_ASSOC);
+        $end = microtime(true);
+        WebConsole::Log("Database query took " . round(($end - $start)*1000000, 0) . " microseconds");
         return $this->_articleCache;
     }
 
@@ -92,7 +95,6 @@ class DBArticle
         if($this->_cachedSortType == -1) $this->getAllArticles();
 
         foreach ($this->_articleCache as $article){
-            WebConsole::Log($article['featured']);
             if($article['featured']) return $article;
         }
         $err_msg = 'Error: No featured article set';
