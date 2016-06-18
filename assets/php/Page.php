@@ -18,7 +18,7 @@ class ArticlePage extends AbstractPage{
     }
     public function writeBody()
     {
-        include_once("iso-includes/ArticleParser.php");
+        include_once("ArticleParser.php");
         if(isset($this->_article_name))
         {
             $article = ArticleParser($this->_article_name);
@@ -52,28 +52,29 @@ class ArticlePage extends AbstractPage{
 class MainPage extends AbstractPage{
     public function writeBody()
     {
-        include_once("iso-includes/ArticleParser.php");
         ?>
         <div id="featured-article">
             <?php
-            $handle = fopen(realpath($_SERVER['DOCUMENT_ROOT']) . "/articles/latest.txt", "r");
-            $featured_article = fgets($handle);
-            $article = ArticleParser($featured_article);
+            //include("featured-article.php");
+
+            include("DBArticle.php");
+            $db = new DBArticle();
+            $art = $db->getFeaturedArticle();
             ?>
-            <div class="img" style="background-image: url('<?=$article["header_image"]?>');"></div>
+            <div class="img" style="background-image: url('<?=$art["image"]?>');"></div>
+
             <div class="placard">
                 <div class="inner"></div>
-                <a class="overlay" href="/articles/<?=$featured_article?>"></a>
+                <a class="overlay" href="<?=$art['path']?>"></a>
                 <h1>
-                    <?=$article["h1"]?>
+                    <?=$art["heading"]?>
                 </h1>
-                <author><?=$article["author"]?></author> - <date><?=$article["date"]?></date>
+                <author><?=$art["author"]?></author> - <date><?=$art["date"]?></date>
                 <h2>
-                    <?=$article["h2"]?>
+                    <?=$art["subheading"]?>
                 </h2>
             </div>
-            <?php
-            ?>
+
         </div>
         <div id="card-div" class="container-fluid" style="max-width: 900px; padding: 0;">
             <?php
@@ -85,10 +86,13 @@ class MainPage extends AbstractPage{
     }
     public function createPage()
     {
+        $start = microtime(true);
         $this->writeHead();
         $this->writeNavbar();
         $this->writeBody();
         $this->writeFooter();
+        $end = microtime(true);
+        WebConsole::Log("Took " . (($end - $start)) . " milliseconds to create page.");
     }
 }
 

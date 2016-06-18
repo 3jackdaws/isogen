@@ -7,6 +7,7 @@
 
 		#Open and Read in File
 	    $file = fopen($article["text_path"], "r");
+		if($file === false) return false;
 	    $text = fread($file, filesize($article["text_path"]));
 
 	    preg_match("#(?<=\<header>).*(?=</header>)#", $text, $matches);

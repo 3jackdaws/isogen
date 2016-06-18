@@ -5,8 +5,8 @@
  * Date: 5/21/16
  * Time: 5:10 PM
  */
-include_once "iso-includes/ArticleParser.php";
-include_once "iso-includes/IsogenDatabase.php";
+include_once "ArticleParser.php";
+
 define("ARTICLE_PATH", realpath($_SERVER['DOCUMENT_ROOT']) . "/articles");
 
 function GenerateCardFromName($name)
