@@ -43,7 +43,7 @@ PagePrimitives::std_page();
             $.post("login.php", fdata, function (data) {
                 var response = JSON.parse(data);
                 console.log(response);
-                if(fdata.get("cookie") === "on"){
+                if(document.getElementsByName("password")[0].value === "on"){
                     $.setCookie('token', response.cookie, 1);
                 }else{
                     $.setCookie('token', response.cookie, null);
