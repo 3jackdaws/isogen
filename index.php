@@ -11,10 +11,10 @@ if(isset($_COOKIE["token"])){
 ?>
 <html>
 <head>
-    <?PagePrimitives::std_head()?>
+    <?php PagePrimitives::std_head()?>
 </head>
 <body>
-<?PagePrimitives::std_navbar(PagePrimitives::std_login_button($user->name))?>
+<?php PagePrimitives::std_navbar(PagePrimitives::std_login_button($user->name))?>
 
     <div id="featured-article">
         <?php
@@ -63,7 +63,7 @@ for ($i = 0; $i<count($articles); $i++) {
             <h2><?= $articles[$i]["subheading"] ?></h2>
         </div>
     </div>
-    
+
     <?php
     $cards[$i%2] .= ob_get_clean();
 }
