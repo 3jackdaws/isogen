@@ -25,16 +25,16 @@ class ArticlePage extends AbstractPage{
 
             $a_front_tag = "<article >";
             $a_back_tag = "</article>";
-            $a_hdr_frnt = "<div class='article-img' style=\"background-image: url('";
+            $a_hdr_frnt = "<div class='header-img' style=\"background-image: url('";
             $a_hdr_rear = "')\"></div>";
             echo $a_hdr_frnt . $article["header_image"] . $a_hdr_rear;
             echo $a_front_tag .
                 "<h1>" . $article["h1"] . "</h1>" .
+                "<h2>" . $article["h2"] . "</h2>" .
+                "<hr>" .
                 "<author>" . $article["author"] . "</author>" .
                 " - " .
                 "<date>" . $article["date"] . "</date>" .
-                "<hr>" .
-                "<h2>" . $article["h2"] . "</h2>" .
                 $article["text"] .
                 "<hr>" .
                 $a_back_tag;
@@ -77,13 +77,37 @@ class MainPage extends AbstractPage{
             </div>
 
         </div>
-        <div id="card-div" class="container-fluid" style="max-width: 900px; padding: 0;">
+        <div class="container" style="width: 950px">
             <?php
             include("CardBuilder.php");
-            GenerateCardsByKey();
-            ?>
-        </div>
-        <?php
+            $articles = $db->getAllArticlesByDate(DBArticle::DESCENDING);
+            $cards = [];
+            for ($i = 0; $i<count($articles); $i++) {
+                ob_start();
+                ?>
+                
+                <div class="post-card ">
+                    <a class="overlay" href="<?= $articles[$i]["path"]?>"></a>
+                    <div class="img" style="background-image: url(<?= $articles[$i]['image'] ?>)"></div>
+                    <br>
+                    <div class="container">
+                        <h1><?= $articles[$i]["heading"] ?></h1>
+                        <center>
+                            <author><?= $articles[$i]["author"] ?></author>
+                            -
+                            <date><?= $articles[$i]["date"] ?></date>
+                        </center>
+                        <h2><?= $articles[$i]["subheading"] ?></h2>
+                    </div>
+                </div>
+
+
+                </div>
+                <?php
+                $cards[$i%2] .= ob_get_clean();
+            }
+            echo "<div class='col-lg-6'>" . $cards[0] . "</div>";
+            echo "<div class='col-lg-6'>" . $cards[1] . "</div></div>";
     }
     public function createPage()
     {
@@ -96,7 +120,42 @@ class MainPage extends AbstractPage{
     }
 }
 
-abstract class AbstractPage
+class CustomPage extends AbstractPage{
+    private $_createHeadFunc;
+    private $_createNavbarFunc;
+    private $_createBodyFunc;
+    private $_createFooterFunc;
+    public function setCustomBody($func){
+        $this->_createBodyFunc = $func;
+    }
+    public function writeHead()
+    {
+        if($this->_createHeadFunc == null)
+            parent::writeHead();
+        else{
+            $this->_createHeadFunc();
+        }
+    }
+
+    public function writeBody()
+    {
+        if($this->_createBodyFunc == null)
+            parent::writeBody();
+        else{
+            $this->_createBodyFunc->__invoke();
+        }
+    }
+
+    public function createPage()
+    {
+        $this->writeHead();
+        $this->writeNavbar();
+        $this->writeBody();
+        $this->writeFooter();
+    }
+}
+
+class AbstractPage
 {
     public function writeHead(){
         ?>
@@ -118,7 +177,7 @@ abstract class AbstractPage
             <link href="/assets/css/custom.css" rel="stylesheet">
             <script src="/assets/js/instaclick.js" data-no-instant></script>
 
-            <script src="/assets/js/ip2.js"></script>
+            <script src="/assets/js/std.js"></script>
             <script type="text/javascript">
                 function collapse(){
                     var navbar = document.getElementById("navbar");
@@ -149,6 +208,7 @@ abstract class AbstractPage
                     <ul class="nav navbar-nav">
                         <li id="home" class="navlink active"><a href="/">Home</a></li>
                         <li id="puzzles" class="navlink"><a href="/puzzles">Puzzles</a></li>
+                        <li id="projects" class="navlink"><a href="/projects">Projects</a></li>
                         <li id="about" class="navlink"><a href="/about">About</a></li>
                         <li class=""><a href="mailto:3jackdaws@gmail.com">Contact</a></li>
                     </ul>
@@ -157,6 +217,11 @@ abstract class AbstractPage
                             <form class="navbar-form form-inline">
                                 <input class="form-control" name="search" placeholder="Search Posts"/>
                             </form>
+                        </li>
+                        <li>
+                            <p class="navbar-btn">
+                                <a href="/login/" class="btn btn-primary">Log In</a>
+                            </p>
                         </li>
                     </ul>
                 </div>

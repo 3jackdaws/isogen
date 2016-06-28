@@ -1,5 +1,6 @@
 <?php
     include_once('ArticleParser.php');
+    include_once('PagePrimitives.php');
 /**
  * Created by PhpStorm.
  * User: Ian Murphy
@@ -17,7 +18,7 @@ class DBArticle
         date_default_timezone_set('America/Los_Angeles');
     }
 
-    public function addArticle($articleShort, $loud){
+    public function addArticle($articleShort, $loud = false){
         $statement = $this->_connection->prepare("SELECT short_name FROM iso_articles WHERE short_name=:sname;");
         $statement->bindParam(':sname', $articleShort);
         $statement->execute();
@@ -26,8 +27,8 @@ class DBArticle
         /** If Article Exists End Function Here */
         if(count($results) > 0){
             $err_msg = 'Attempted to add already existing article to database.';
-            $loud ? WebConsole::EchoLog($err_msg) : WebConsole::Error($err_msg);
-            return;
+
+            return $err_msg;
         }
 
         $sql = "INSERT INTO iso_articles (heading, subheading, image, author, date, path, short_name) VALUES(:head, :sub, :image, :author, :date, :path, :sname);";
@@ -35,8 +36,8 @@ class DBArticle
         $article = ArticleParser($articleShort);
         if($article == false){
             $err_msg = 'Article with short name "' . $articleShort . '" could not be found.';
-            $loud ? WebConsole::EchoLog($err_msg) : WebConsole::Error($err_msg);
-            return;
+
+            return $err_msg;
         }
         $statement->bindParam(':head', $article['h1']);
         $statement->bindParam(':sub', $article['h2']);
@@ -49,11 +50,11 @@ class DBArticle
         $statement->bindParam(':sname', $articleShort);
         if(!$statement->execute()){
             $err_msg = 'Execution of prepared statement has failed';
-            $loud ? WebConsole::EchoLog($err_msg) : WebConsole::Error($err_msg);
+            return $err_msg;
         }
         else{
             $err_msg = 'Article Added Successfully';
-            $loud ? WebConsole::EchoLog($err_msg) : WebConsole::Log($err_msg);
+            return $err_msg;
         }
     }
     
@@ -62,7 +63,6 @@ class DBArticle
         $result = $this->_connection->query("SELECT * FROM iso_articles;");
         $this->_articleCache = $result->fetchAll(PDO::FETCH_ASSOC);
         $end = microtime(true);
-        WebConsole::Log("Database query took " . round(($end - $start)*1000000, 0) . " microseconds");
         return $this->_articleCache;
     }
 
@@ -86,7 +86,7 @@ class DBArticle
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         }
         catch (PDOException $e){
-            WebConsole::Error($e);
+            return $e;
         }
 
     }
@@ -98,23 +98,10 @@ class DBArticle
             if($article['featured']) return $article;
         }
         $err_msg = 'Error: No featured article set';
-        WebConsole::Error($err_msg);
+        return $err_msg;
     }
 
     const ASCENDING = 0;
     const DESCENDING = 1;
 }
 
-class WebConsole{
-    public static function Log($string){
-        echo '<script>console.log("' . $string . '")</script>';
-    }
-
-    public static function Error($string){
-        echo '<script>console.error("' . $string . '")</script>';
-    }
-
-    public static function EchoLog($string){
-        echo "<span class='php_error'>" . $string . "</span><br/>";
-    }
-}

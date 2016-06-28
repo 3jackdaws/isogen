@@ -2,13 +2,32 @@
 	Additional Classes
 */
 
-.article-img{
+.header-img{
     background-size: cover;
     background-position: center center;
     width: 100%;
     height: 100%;
     position: fixed;
     z-index: -100;
+}
+
+.article-img{
+    width: 600px;
+}
+
+p .caption{
+
+    text-align: center;
+    color: red;
+}
+
+.ai-div{
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .navbar{
@@ -20,8 +39,8 @@ body{
 }
 
 article{
-    max-width: 700px;
-    min-width: 50%;
+    max-width: 100%;
+    width: 900px;
     padding: 4%;
     font-weight: 300;
     margin: 0 auto; 
@@ -29,6 +48,7 @@ article{
     background-color: white;
     margin-top: 70vh;
     box-shadow: 2px 2px 10px 4px rgba(0,0,0,.1);
+    text-align: justify;
 }
 
 article p{
@@ -39,7 +59,8 @@ article p{
 }
 
 h1{
-	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; 
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
 }
 
 h2{
@@ -52,25 +73,27 @@ h2{
 article author{
     font-size: 16px;
     color: #444;
-    margin-right: 5px; 
+    margin-right: 5px;
+
 }
 
 article date{
     font-size: 16px;
     color: #444;
-    margin-left: 5px; 
+    margin-left: 5px;
+
 }
 
 .post-card{
     overflow: hidden;
     position: relative;
     text-align: left;
-    border: 1px solid #EEE;
+    border: 1px solid #BBB;
     border-radius: 4px;
 
     margin-bottom: 5%;
     background-color: white;
-    box-shadow: 0px 2px 10px -1px rgba(0,0,0,.1);
+    box-shadow: 1px 2px 10px 2px rgba(0,0,0,.2);
     width: 100%;
 }
 
@@ -93,7 +116,7 @@ article date{
 }
 
 .post-card h2{
-    font-size: 22px;
+    font-size: 18px;
     color: grey;
 }
 .overlay{
@@ -116,6 +139,7 @@ article date{
 	text-align: center;
     margin-bottom: 50px;
     position: relative;
+
 }
 
 author{
@@ -137,6 +161,7 @@ date{
 	background-position: center center;
 	top: 0;
     border-bottom: 6px solid #111;
+    box-shadow: 1px 2px 10px 2px rgba(0,0,0,.2);
 }
 
 
@@ -154,9 +179,10 @@ date{
 	width: 90%;
 	max-width: 900px;
 	padding: 20px;
-	box-shadow: 2px 2px 20px 1px rgba(0,0,0,0.1);
+
 	outline: 1px solid lightgrey;
 	outline-offset: -6px;
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,.2);
 }
 
 
@@ -169,3 +195,165 @@ date{
 	font-weight: 100;
 }
 
+.login{
+    margin: 0 auto;
+    max-width: 100%;
+    width: 500px;
+    height: 100vh;
+    background-color: black;
+    outline: 2px solid white;
+    outline-offset: -6px;
+    padding: 10px;
+    color: white;
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,.2);
+}
+
+.register{
+    margin: 0 auto;
+    max-width: 100%;
+    width: 500px;
+    height: 100vh;
+    background-color: white;
+    outline: 2px solid black;
+    outline-offset: -6px;
+    padding: 10px;
+    color: black;
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,.2);
+}
+
+.spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+
+.cg-card{
+    width: 150px;
+    height: 250px;
+
+    border-radius: 2px;
+    box-shadow: 0 2px 10px 3px rgba(0,0,0, 0.2);
+    background-color: transparent;
+    float: left;
+    margin: 20px;
+    text-align: center;
+    cursor: default;
+    z-index: auto;
+}
+.cg-card h1{
+    font-size: 16px;
+    margin: 1px;
+
+}
+
+.cg-bg{
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(217, 168, 102);
+    padding: 3px;
+    border: 4px solid #7b5e4a;
+    text-shadow: 1px 1px 2px rgba(0,0,0,.3);
+}
+
+.cg-card:hover{
+    box-shadow: 0 4px 15px 6px rgba(0,0,0, 0.2);
+}
+
+.cg-img{
+    width: 120px;
+    height: 120px;
+    border: 2px solid #7b5e4a;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: center center;
+}
+
+.cg-desc{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 120px;
+    height: 70px;
+    background-color: tan;
+    border: 1px solid #7b5e4a;
+    font-size: 11px;
+}
+
+.cg-stats{
+
+    width: 100%;
+    position: absolute;
+    bottom:2px;
+    bottom:2px;
+    text-align: center;
+}
+
+.add-a-card{
+    position: absolute;
+    top: 100px;
+    right: 50px;
+}
+
+.add-card-modal{
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 6px;
+    text-align: center;
+    width: 500px;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 10px 6px rgba(0,0,0, 0.2);
+    text-decoration: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.zoom-frame{
+    width: 230%;
+    height: 120%;
+    display: block;
+
+
+    border: 4px solid lightgrey;
+    -moz-transform: scale(0.4);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.4);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.4);
+    -webkit-transform-origin: 0 0;
+    box-shadow: 10px 20px 25px 3px rgba(0,0,0,0.4);
+}

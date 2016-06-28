@@ -3,8 +3,10 @@ $basepath = realpath($_SERVER['DOCUMENT_ROOT']);
 include_once($basepath . '/assets/php/PagePrimitives.php');
 $timer = new PageTimer();
 $timer->start();
-PagePrimitives::std_page();
-PagePrimitives::std_article(basename(__DIR__));
+echo "<html><head>";
+PagePrimitives::std_head();
+echo "</head><body>";
+PagePrimitives::std_article("/account/temp", true);
 $timer->stop();
 WebConsole::Log($timer);
 ?>
