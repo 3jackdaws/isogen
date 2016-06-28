@@ -33,7 +33,7 @@ PagePrimitives::std_page();
             var button = document.getElementById("sub");
             button.innerHTML = "<span class='glyphicon glyphicon-refresh spin'></span>"
             var fdata= new FormData(document.forms.namedItem("login"));
-            if(fdata.get("password").length < 6){
+            if(document.getElementsByName("password")[0].value.length < 6){
                 error("Password is less than 6 characters");
                 globalSubmitLock = false;
                 button.innerHTML = "Log In";
