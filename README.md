@@ -12,14 +12,22 @@ As for the reason I am not using Wordpress or some other blog frmaework, I like 
 
 ##Features
 ####Automatic Page Preloading
-Website sections are preloaded on mouse hover.  When the section is clicked, the page is swapped out instantly.  This also works with articles and posts.  
-Pages can still be bookmarked and links can be shared.  This is achieved by having index files at the article directories that redirect to the homepage with some GET variables.  The page requested is then loaded based on the GET vars submitted and the url is swapped out with the original one.  It looks pretty seemless.
+InstantClick preloads all <A> tags on mouse over and swaps the body out on mouse down.
 
-####Fully contained article directories
-Articles are added to the website by adding an article "package".  Article "packages" are in the following format:
-* Folder with the article directory name
-* .html file named the same as the directory
-* Any images used in the article or for the header
+####Article upload page
+Articles are added to the website by uploading an article markup file.  Article markup files require "tags" to tell the parser what the article's attributes are.  The markup file must be an html file and have the following tags (includes examples).
+* <author>Ian Murphy</author>
+* <date>January 1, 2016</date>
+* <header>big_header_image.jpg</header>
+* <h1>Title of article</h1>
+* <h2>Sub title of article</h2>
+* <article>Body of article text goes in here</article>
+
+Optional tags:
+* <img>image_in_article.jpg</img>
+
+When uploading, the parser requires a .html file and an image file before one can even click the parse button.  After parsing successfully, a user can see what the article looks like in a preview window.  From here, the user can choose to publish the article.
+
 
 ######Problems
 Preloading doesn't work on mobile devices because there is no "hover" event on a smartphone.  Mobile devices do not break the site, but they do not benefit from preloading.
