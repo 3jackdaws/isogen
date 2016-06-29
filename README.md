@@ -17,12 +17,12 @@ InstantClick preloads all <A> tags on mouse over and swaps the body out on mouse
 ####Article upload page
 Articles are added to the website by uploading an article markup file.  Article markup files require "tags" to tell the parser what the article's attributes are.  The markup file must be an html file and have the following tags (includes examples).
 <pre>
-* \<author>Ian Murphy</author>
-* \<date>January 1, 2016</date>
-* \<header>big_header_image.jpg</header>
-* \<h1>Title of article</h1>
-* \<h2>Sub title of article</h2>
-* \<article>Body of article text goes in here</article>
+* `<author>`Ian Murphy</author>
+* `<date>`January 1, 2016</date>
+* `<header>`big_header_image.jpg</header>
+* `<h1>`Title of article</h1>
+* `<h2>`Sub title of article</h2>
+* `<article>`Body of article text goes in here</article>
 </pre>
 Optional tags:
 <pre>
