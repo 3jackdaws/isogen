@@ -9,9 +9,8 @@
 class PagePrimitives
 {
     
-    public static function std_head($title){
-        if(strlen($title) > 0) $tText = $title;
-        else $tText = "Isogen";
+    public static function std_head($title = "Isogen"){
+
         ?>
 
         <meta charset="utf-8">
@@ -23,7 +22,7 @@ class PagePrimitives
         <meta name="version" content="1.6.6">
         <link rel="icon" href="">
         <title>
-            <?=$tText?>
+            <?=$title?>
         </title>
 
         <link href="/assets/css/bootstrap.css" rel="stylesheet">
@@ -35,11 +34,8 @@ class PagePrimitives
 
         <?php
     }
-    public static function std_navbar($name){
-
-
+    public static function std_navbar($name = "<a href='/account/'>Log In</a>"){
         ?>
-
         <nav id="nav" class="navbar navbar-fixed-top navbar-default" style="margin: 0;border-radius: 0;padding: 0 15% 0 15%;border-bottom: solid 1px grey">
             <div class="navbar-header">
                 <button type="button" onclick="$.collapse()" class="navbar-toggle collapsed" style="color:black" >
@@ -98,7 +94,7 @@ class PagePrimitives
                 $a_back_tag;
         }
     }
-    public static function std_page($title, $name){
+    public static function std_page($title = "Isogen", $name){
         echo "<html><head>";
         self::std_head($title);
         echo "</head><body>";
@@ -114,6 +110,7 @@ class PagePrimitives
 class PageTimer{
     private $start_time;
     private $end_time;
+    private $timer_group = [];
     public function start(){
         $this->start_time = microtime(true);
     }
@@ -124,7 +121,11 @@ class PageTimer{
 
     public function __toString()
     {
-        return "Page created in " . ($this->end_time - $this->start_time)*1000 . " milliseconds.";
+        return json_encode($this->timer_group);
+    }
+
+    public function build($key, $value){
+        $this->timer_group[$key] = $value;
     }
 }
 

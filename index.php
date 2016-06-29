@@ -1,7 +1,6 @@
 <?php
 require(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/PagePrimitives.php");
-$timer = new PageTimer();
-$timer->start();
+
 if(isset($_COOKIE["token"])){
     require(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/AuthModule.php");
     $authmod = new AuthModule();
@@ -18,12 +17,12 @@ if(isset($_COOKIE["token"])){
 
     <div id="featured-article">
         <?php
-        //include("featured-article.php");
 
         include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/DBArticle.php");
         $db = new DBArticle();
 
         $art = $db->getFeaturedArticle();
+
         ?>
         <div class="img" style="background-image: url('<?=$art["image"]?>');"></div>
 
@@ -44,6 +43,7 @@ if(isset($_COOKIE["token"])){
 <?php
 
 $articles = $db->getAllArticlesByDate(DBArticle::DESCENDING);
+
 $cards = [];
 for ($i = 0; $i<count($articles); $i++) {
     ob_start();
@@ -74,5 +74,4 @@ echo "<div class='col-lg-6'>" . $cards[1] . "</div></div>";
 
 </body>
 <?php
-$timer->stop();
-WebConsole::Log($timer);
+

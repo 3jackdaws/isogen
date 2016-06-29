@@ -122,7 +122,7 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
             if(response.error == 0){
                 document.getElementById('pframe').contentWindow.location = document.getElementById('pframe').contentWindow.location;
                 ArticleUploadForm.issueDiv.innerHTML += "<a class='list-group-item list-group-item-success'>Article parsed successfully</a>";
-                ArticleUploadForm.issueDiv.innerHTML += "<a class='list-group-item'>" + response.publishdir + "</a>";
+                ArticleUploadForm.issueDiv.innerHTML += "<a class='list-group-item'>" + response.message + "</a>";
                 ArticleUploadForm.canPublish = true;
                 ArticleUploadForm.updateButtonStatus();
             }

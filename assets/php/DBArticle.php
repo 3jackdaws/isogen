@@ -12,11 +12,14 @@ class DBArticle
     private $_connection;
     private $_articleCache;
     private $_cachedSortType = -1;
+    private $_errno;
     public function __construct()
     {
         $this->_connection = new PDO('mysql:host=localhost;dbname=isogen', 'isogen', '');
         date_default_timezone_set('America/Los_Angeles');
     }
+
+
 
     public function addArticle($articleShort, $loud = false){
         $statement = $this->_connection->prepare("SELECT short_name FROM iso_articles WHERE short_name=:sname;");
@@ -26,18 +29,17 @@ class DBArticle
 
         /** If Article Exists End Function Here */
         if(count($results) > 0){
-            $err_msg = 'Attempted to add already existing article to database.';
-
-            return $err_msg;
+            $this->_errno = 'Attempted to add already existing article to database.';
+            return false;
         }
 
         $sql = "INSERT INTO iso_articles (heading, subheading, image, author, date, path, short_name) VALUES(:head, :sub, :image, :author, :date, :path, :sname);";
         $statement = $this->_connection->prepare($sql);
         $article = ArticleParser($articleShort);
         if($article == false){
-            $err_msg = 'Article with short name "' . $articleShort . '" could not be found.';
+            $this->_errno = 'Article with short name "' . $articleShort . '" could not be found.';
 
-            return $err_msg;
+            return false;
         }
         $statement->bindParam(':head', $article['h1']);
         $statement->bindParam(':sub', $article['h2']);
@@ -49,12 +51,12 @@ class DBArticle
         $statement->bindParam(':path', $path);
         $statement->bindParam(':sname', $articleShort);
         if(!$statement->execute()){
-            $err_msg = 'Execution of prepared statement has failed';
+            $this->_errno = 'Execution of prepared statement has failed';
             return $err_msg;
         }
         else{
-            $err_msg = 'Article Added Successfully';
-            return $err_msg;
+            $this->_errno = 'Article Added Successfully';
+            return true;
         }
     }
     
@@ -97,8 +99,12 @@ class DBArticle
         foreach ($this->_articleCache as $article){
             if($article['featured']) return $article;
         }
-        $err_msg = 'Error: No featured article set';
-        return $err_msg;
+        $this->_errno = 'Error: No featured article set';
+        return false;
+    }
+
+    public function getError(){
+        return $this->_errno;
     }
 
     const ASCENDING = 0;

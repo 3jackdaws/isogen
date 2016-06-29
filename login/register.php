@@ -21,10 +21,8 @@ if(isset($_POST["user"])){
 }
 
 $basepath = realpath($_SERVER['DOCUMENT_ROOT']);
-include_once($basepath . '/assets/php/Page.php');
-$page = new CustomPage();
-$page->writeHead();
-$page->writeNavbar();
+include_once($basepath . '/assets/php/PagePrimitives.php');
+PagePrimitives::std_page();
 ?>
 <div class="container">
     <div class="jumbotron" style="margin-top: 60px; position: relative;">
@@ -44,9 +42,7 @@ $page->writeNavbar();
             </form>
     </div>
 </div>
-<?php
-$page->writeFooter();
-?>
+
 <script>
     var globalSubmitLock = false;
     function onClickSubmit() {

@@ -1,11 +1,8 @@
 <?php
-$start = microtime(true);
-$basepath = realpath($_SERVER['DOCUMENT_ROOT']);
-include_once($basepath . '/assets/php/Page.php');
-$page = new CustomPage();
-$page->writeHead();
 
-$page->writeNavbar();
+$basepath = realpath($_SERVER['DOCUMENT_ROOT']);
+include_once($basepath . '/assets/php/PagePrimitives.php');
+PagePrimitives::std_page("Card Game" );
 
 
 
@@ -42,14 +39,13 @@ $page->writeNavbar();
 <div id="change" style="position: absolute; bottom: 20px; right: 20px; width: 200px; height: 300px; background-color: #BBB; text-align: center; vertical-align: middle; line-height: 150px">
     <h1>Place Card to Change</h1>
 </div>
+</body>
 <script>
     InstantClick.on('change', function(){
         getCards();
-        document.getElementById("change").addEventListener("mouseup", function (e) {
-            alert(e);
-        });
-
-
+    });
+    document.addEventListener("load", function(){
+        InstantClick.init();
     });
     var mouseX;
     var mouseY;
@@ -82,7 +78,6 @@ $page->writeNavbar();
         clearInterval(track);
         currentCard = null;
     }
-
     function addCard(){
         var modal = document.getElementById("addcard");
         if(modal.style.visibility == "hidden"){
@@ -94,7 +89,6 @@ $page->writeNavbar();
         }
 
     }
-
     function submitNewCard(){
         var fdata = new FormData(document.forms.namedItem("acForm"));
         var name = document.getElementsByName("name")[0].value;
@@ -114,12 +108,10 @@ $page->writeNavbar();
             getCards();
         })
     }
-
     function cardMenu(event) {
         console.log("Menu");
         console.log(event);
     }
-
     function profileCards(){
         var cards = document.getElementsByClassName("cg-card");
         for(var i = cards.length-1; i>=0; i--){
@@ -133,14 +125,12 @@ $page->writeNavbar();
             cards[i].style.position = "absolute";
         }
     }
-
     function getCards(){
         $.get("/projects/card-game/getcards.php", function (data) {
             document.getElementById("carddiv").innerHTML = data;
             profileCards();
         });
     }
-
     document.onmousemove = function (event) {
 //        mouseX = event.clientX;
 //        mouseY = event.clientY;
@@ -149,13 +139,6 @@ $page->writeNavbar();
 //        console.log(event.pageX);
 //        console.log(event.screenX);
     }
-
-
-
-
     document.onmouseup = function(){putDownCard()};
-
-
 </script>
-<?php
-$page->writeFooter();
+

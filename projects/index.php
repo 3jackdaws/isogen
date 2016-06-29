@@ -1,34 +1,25 @@
 <?php
-$start = microtime(true);
 $basepath = realpath($_SERVER['DOCUMENT_ROOT']);
-include_once($basepath . '/assets/php/Page.php');
-$page = new CustomPage();
-$page->writeHead();
-$page->writeNavbar();
-
+include_once($basepath . '/assets/php/PagePrimitives.php');
+PagePrimitives::std_page("Projects");
 $projects = glob(__DIR__ . "/*", GLOB_ONLYDIR);
 
-
 ?>
-<div class="container">
-    <ul>
+<div class="container" style="margin-top: 100px; width">
+    <div class="list-group">
         <?php
         foreach ($projects as $dir)
         {
             ?>
-            <li><a href="/projects/<?=basename($dir)?>"><?=basename($dir)?></a></li>
+            <a class="list-group-item list-group-item-info " href="/projects/<?=basename($dir)?>"><?=basename($dir)?></a>
             <?php
         }
         ?>
 
-    </ul>
+    </div>
 </div>
 
 
 <?php
-$page->writeFooter();
-$end = microtime(true);
 
-
-WebConsole::Log("Page created in " . round(($end - $start)*1000, 0) . " milliseconds");
 ?>

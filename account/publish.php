@@ -29,6 +29,12 @@ for ($i = 0; $i<$num_files; $i++){
 }
 copy(realpath($_SERVER["DOCUMENT_ROOT"]) . "/account/temp/cp.php", $upload_dir . "/index.php");
 $dba = new DBArticle();
-$dba->addArticle(basename($article["publish-to"]));
-$response["name"] = $article["name"];
+if($dba->addArticle(basename($article["publish-to"]))){
+    $response["message"] = "Article successfully published";
+}
+else{
+    $response["error"] = 1;
+    $response["errorline"][] = $dba->getError();
+}
+
 echo json_encode($response);
