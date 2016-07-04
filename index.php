@@ -39,7 +39,7 @@ if(isset($_COOKIE["token"])){
         </div>
 
     </div>
-<div class="container" style="width: 950px">
+<div class="container" style="max-width: 900px; padding: 0">
 <?php
 
 $articles = $db->getAllArticlesByDate(DBArticle::DESCENDING);
@@ -67,11 +67,14 @@ for ($i = 0; $i<count($articles); $i++) {
     <?php
     $cards[$i%2] .= ob_get_clean();
 }
-echo "<div class='col-lg-6'>" . $cards[0] . "</div>";
-echo "<div class='col-lg-6'>" . $cards[1] . "</div></div>";
+echo "<div class='col-sm-6'>" . $cards[0] . "</div>";
+echo "<div class='col-sm-6'>" . $cards[1] . "</div></div>";
 ?>
 </div>
 
 </body>
+<script>
+    window.addEventListener("load", function(){InstantClick.init()});
+</script>
 <?php
 

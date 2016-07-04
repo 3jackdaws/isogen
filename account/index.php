@@ -18,7 +18,9 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
 ?>
 <html>
 <head>
-    <?PagePrimitives::std_head()?>
+    <?php
+    PagePrimitives::std_head();
+    ?>
     <style>
         body{
             overflow: hidden;
@@ -26,7 +28,9 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
     </style>
 </head>
 <body>
-    <?PagePrimitives::std_navbar("<a class=\"btn btn-primary\" onclick=\"javascript:$.setCookie('token', null, null);window.location='/'\">Log Out</a>")?>
+    <?php
+    PagePrimitives::std_navbar("<a class=\"btn btn-primary\" onclick=\"javascript:$.setCookie('token', null, null);window.location='/'\">Log Out</a>");
+    ?>
 
     <div style="position: relative; margin-top: 50px; " class="container">
         <ul class="nav nav-tabs nav-justified">

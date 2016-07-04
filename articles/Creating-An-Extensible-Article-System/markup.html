@@ -1,0 +1,44 @@
+<header>pen.jpg</header>
+<h1>Creating An Extensible Article System</h1>
+<h2>Making a system where new posts are automatically displayed on a website</h2>
+<author>Ian Murphy</author>
+<date>May 29, 2016</date>
+
+<article>
+<p>
+This is another writeup, of presumably many, that details the inner workings of this site.  After the <a href="/articles/preloading-articles">preloading debacle</a>, I decided that I needed some sort of system for article management.  It would have to interface with the preloading system and it would also need to allow new articles to be added easily.  Articles would require a header image, and may also include images in the body of the article itself. I've listed all the requirements below. 
+</p>
+
+<p>
+	
+	<ul><h4>The article system must:</h4>
+		<li>Package all required images with article text.</li>
+		<li>Support the already implemented preloading system.</li>
+		<li>Have some way of specifying a "featured" article.</li>
+		<li>Allow for the automatic creation of new article packages based on a web upload.</li>
+		<li>Must be able to be moved to a mySQL based management system eventually.</li>
+	</ul>
+</p>
+<p>
+	I chose PHP for its familiarity and ease of inclusion into the project.  PHP is already installed on the server the website runs on and I have already done prjects where it has to communicate with a database.  
+</p>
+<p>
+	There are several key PHP files that make the article system work: ArticleParser.php, ArticleBuilder.php, CardBuilder.php, and featured-article.php.  I will explain them in detail down below. 
+</p>
+<p>
+	<h4>ArticleParser</h4>
+	The ArticleParser module is the most important because it does most of the work and its output is depeneded on by all the other modules.  ArticleParser takes a name of an article -- for example, an-extensible-article-system, the name of this article -- and figures out where it's markup file is located.  It then parses that for information and returns an associative array with the relevant parts.  So far, those parts are just the header image path, the title of the article, the subtitle, the author, and the actual text of the article.  Typically, this module is included and then called in all the other modules.
+</p>
+<p>
+	<h4>ArticleBuilder</h4>
+	The Builder module starts doing its thing whenever an actual article page is loaded.  The ajax method accesses the ArticleBuilder.php file and passes the HTTP GET variable "name" if I'm not mistaken.  Once again, the name is just shorthand for the path to the article directory.  The ArticleBuilder calls ArticleParser and then constructs the article correctly.  Correctly means that is places the article contents inside an &lt;article&gt; tag and the first piece of content is the article's headline.  Please don't do it any other way.  I've made a tool in Java that TL;DR's articles for me and it's maddening when it seemingly has a little robot stroke and returns gibberish because the site it scanned did articles in a weird way.
+</p>
+<p>
+	<h4>CardBuilder</h4>
+	Builds the cards that make up the front page of this site.  Not much else to say other than it does some funky overlay thing so that the entire card is clickable.
+</p>
+<p>
+	<h4>The Featured Article Thing</h4>
+	Creates the featured article div that takes up most of the room on the front page.  Chooses the article based on a text file that is stored in the article directory.  That part will definitely be automated later when this whole operation moves to SQL.
+</p>
+</article>

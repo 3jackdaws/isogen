@@ -90,7 +90,7 @@ article date{
     text-align: left;
     border: 1px solid #BBB;
     border-radius: 4px;
-
+    margin: 0;
     margin-bottom: 5%;
     background-color: white;
     box-shadow: 1px 2px 10px 2px rgba(0,0,0,.2);
@@ -248,89 +248,7 @@ date{
 }
 
 
-.cg-card{
-    width: 150px;
-    height: 250px;
 
-    border-radius: 2px;
-    box-shadow: 0 2px 10px 3px rgba(0,0,0, 0.2);
-    background-color: transparent;
-    float: left;
-    margin: 20px;
-    text-align: center;
-    cursor: default;
-    z-index: auto;
-}
-.cg-card h1{
-    font-size: 16px;
-    margin: 1px;
-
-}
-
-.cg-bg{
-    color: white;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(217, 168, 102);
-    padding: 3px;
-    border: 4px solid #7b5e4a;
-    text-shadow: 1px 1px 2px rgba(0,0,0,.3);
-}
-
-.cg-card:hover{
-    box-shadow: 0 4px 15px 6px rgba(0,0,0, 0.2);
-}
-
-.cg-img{
-    width: 120px;
-    height: 120px;
-    border: 2px solid #7b5e4a;
-    margin: 0 auto;
-    background-size: cover;
-    background-position: center center;
-}
-
-.cg-desc{
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 120px;
-    height: 70px;
-    background-color: tan;
-    border: 1px solid #7b5e4a;
-    font-size: 11px;
-}
-
-.cg-stats{
-
-    width: 100%;
-    position: absolute;
-    bottom:2px;
-    bottom:2px;
-    text-align: center;
-}
-
-.add-a-card{
-    position: absolute;
-    top: 100px;
-    right: 50px;
-}
-
-.add-card-modal{
-    background-color: white;
-    border: 1px solid grey;
-    border-radius: 6px;
-    text-align: center;
-    width: 500px;
-    padding: 20px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 35%;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 4px 10px 6px rgba(0,0,0, 0.2);
-    text-decoration: none;
-}
 
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */

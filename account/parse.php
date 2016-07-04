@@ -16,8 +16,10 @@ foreach ($pre_existing as $todelete){
 
 $files = $_FILES["files"];
 $num_files = count($files["name"]);
+$article_short_name = "":
 for ($i = 0; $i<$num_files; $i++){
     if($files["type"][$i] == "text/html"){
+        $article_short_name = basename($files["tmp_name"][$i]);
         move_uploaded_file($files["tmp_name"][$i], $upload_dir . "markup.html");
     }else{
         move_uploaded_file($files["tmp_name"][$i], $upload_dir . $files["name"][$i]);
