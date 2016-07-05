@@ -100,6 +100,7 @@ function checkDelete(event){
     var cardRect = card.getBoundingClientRect();
     var cardname = card.getElementsByTagName("h1")[0].innerHTML;
     if(cardRect.left > deleteRect.left && cardRect.top > deleteRect.top){
+        card.className = card.className.replace(/grow/, "");
         card.className += " shrink";
         num_deleting++;
         changeDelBG();
