@@ -15,14 +15,14 @@ function createCards(){
 
         ?>
 
-        <div class="cg-card">
-            <div class="noselect cg-bg" class="cg-bg">
+        <div class="cg-card noselect">
+
                 <h1><?=$card_info->name?></h1>
                 <div class="cg-img" style="background-image: url('<?=$card_info->pic?>')"></div>
                 <div class="cg-desc"><?=$card_info->desc?></div>
                 
                 <div class="cg-stats">ATK: <?=$card_info->atk?> | DEF: <?=$card_info->def?></div>
-            </div>
+
 
         </div>
 

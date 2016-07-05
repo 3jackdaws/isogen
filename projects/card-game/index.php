@@ -43,8 +43,8 @@ PagePrimitives::std_navbar(PagePrimitives::std_login_button());
         <button type="button" class="btn btn-primary" style="float: right" onclick="submitNewCard()">Add Card</button>
     </form>
 </div>
-<div id="del" class="noselect" style="position: absolute; bottom: 10px; right: 10px; width: 170px; height: 270px; background-color: #EEE; border: 1px solid lightblue;text-align: center; vertical-align: middle; line-height: 150px">
-    <h1>Place Card to Delete</h1>
+<div id="del" class="noselect delete-slot grey-pattern" onclick="toggleExpand(this)">
+    <span class='glyphicon glyphicon-remove'></span>
 </div>
 </body>
 <script src="card-game.js">
