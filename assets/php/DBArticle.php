@@ -1,6 +1,7 @@
 <?php
     include_once('ArticleParser.php');
     include_once('PagePrimitives.php');
+    require_once('json_response.php');
 /**
  * Created by PhpStorm.
  * User: Ian Murphy
@@ -81,7 +82,7 @@ class DBArticle
     public function getArticlesByAuthor($author){
         try{
 
-            $sql = "SELECT * FROM iso_articles WHERE author=:author;";
+            $sql = "SELECT * FROM iso_articles WHERE author=:author ORDER BY date DESC;";
             $statement = $this->_connection->prepare($sql);
             $statement->bindParam(':author', $author);
             $statement->execute();
@@ -101,6 +102,33 @@ class DBArticle
         }
         $this->_errno = 'Error: No featured article set';
         return false;
+    }
+
+    public function setFeaturedArticle($aid){
+
+        $sql = "SELECT article_id FROM iso_articles WHERE featured=0;";
+        $statement = $this->_connection->query($sql);
+        $results = $statement->fetchAll(PDO::FETCH_COLUMN);
+        if(array_search($aid, $results, false) === false){
+            $return = new json_response();
+            $return->add_error("Array Search returned false");
+            return $return;
+        }
+        try{
+            $sql = "UPDATE iso_articles SET featured=0;";
+            $this->_connection->query($sql);
+            $sql = "UPDATE iso_articles SET featured=1 WHERE article_id=:id;";
+            $statement = $this->_connection->prepare($sql);
+            $statement->bindParam(':id', $aid);
+            if(!$statement->execute()){
+
+            }
+        }
+        catch (PDOException $e){
+            $return = new json_response();
+            $return->add_error($e);
+            return $return;
+        }
     }
 
     public function getError(){

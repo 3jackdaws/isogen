@@ -5,14 +5,13 @@
  * Date: 6/27/2016
  * Time: 7:56 PM
  */
-include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/ArticleParser.php");
+include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/account/ArticleParser.php");
 include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/DBArticle.php");
-
-$article = ArticleParser("/account/temp", true);
-$response = [];
-$response["error"] = 0;
-$response["message"] = "Moved Successfully";
-$upload_dir = realpath($_SERVER["DOCUMENT_ROOT"]) . $article["publish-to"];
+include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/json_response.php");
+$ap = new ArticleParser();
+$article = $ap->parseMarkup("/account/temp");
+$response = new json_response();
+$upload_dir = realpath($_SERVER["DOCUMENT_ROOT"]) . "" . $article["publish-to"];
 if(!mkdir($upload_dir)){
     $response["error"] = 1;
     $response["errorline"] = "Could not make directory";

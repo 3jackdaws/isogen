@@ -98,4 +98,12 @@ class AuthModule
         $this->_response["error"] = 1;
         return json_encode($this->_response);
     }
+
+    public function permLevel($token, $min){
+        $statement = $this->_connection->prepare("SELECT permissions FROM iso_users WHERE cookie=:token;");
+        $statement->bindParam(':token', $token);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $results >= $min;
+    }
 }

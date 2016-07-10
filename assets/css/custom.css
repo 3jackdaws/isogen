@@ -275,3 +275,9 @@ date{
     -webkit-transform-origin: 0 0;
     box-shadow: 10px 20px 25px 3px rgba(0,0,0,0.4);
 }
+
+.short-card{
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+
+}

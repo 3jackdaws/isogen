@@ -23,6 +23,13 @@ var $ = {
         // x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         x.send(p);
     },
+    post2: function(r,p,c){
+        var x=new XMLHttpRequest();
+        x.onreadystatechange=function(){if(x.readyState==4&&x.status==200)c(x.responseText);}
+        x.open("POST", r, true);
+        x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        x.send(p);
+    },
     setCookie: function(cname, cvalue, exdays) {
         if(exdays == null){
             document.cookie = cname + "=" + cvalue + ";path=/";

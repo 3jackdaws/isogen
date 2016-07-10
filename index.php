@@ -13,7 +13,7 @@ if(isset($_COOKIE["token"])){
     <?php PagePrimitives::std_head()?>
 </head>
 <body>
-<?php PagePrimitives::std_navbar(PagePrimitives::std_login_button($user->name))?>
+<?php PagePrimitives::std_navbar(PagePrimitives::named_login($user->name))?>
 
     <div id="featured-article">
         <?php

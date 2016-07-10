@@ -10,25 +10,28 @@ var deleteIntervals = {};
 var num_deleting = 0;
 var currentCard;
 var currentZIndex = 2;
+
 function pickUpCard(event){
     if(event.button != 0) return;
     var card = event.currentTarget;
     if(card === currentCard){
         putDownCard();
-        return;
     }
-    currentCard = card;
-    card.style.zIndex = currentZIndex++;
+    else{
+        currentCard = card;
+        card.style.zIndex = currentZIndex++;
 
-    var cardBoundaries = card.getBoundingClientRect();
-    var offsetX = cardBoundaries.left - mouseX - 16;
-    var offsetY = cardBoundaries.top - mouseY - 14;
-    card.style.position = "absolute";
-    track = window.setInterval(function () {
-        card.style.left = mouseX + offsetX;
-        card.style.top = mouseY + offsetY;
-    }, 15);
+        var cardBoundaries = card.getBoundingClientRect();
+        var offsetX = cardBoundaries.left - mouseX - 20;
+        var offsetY = cardBoundaries.top - mouseY - 20;
+        card.style.position = "absolute";
+        track = window.setInterval(function () {
+            card.style.left = mouseX + offsetX;
+            card.style.top = mouseY + offsetY;
+        }, 15);
+    }
 }
+
 function putDownCard(){
     clearInterval(track);
     currentCard = null;
@@ -99,8 +102,9 @@ function checkDelete(event){
     var deleteRect = document.getElementById("del").getBoundingClientRect();
     var cardRect = card.getBoundingClientRect();
     var cardname = card.getElementsByTagName("h1")[0].innerHTML;
+
     if(cardRect.left > deleteRect.left && cardRect.top > deleteRect.top){
-        card.className = card.className.replace(/grow/, "");
+        card.className = card.className.replace(/ grow/, "");
         card.className += " shrink";
         num_deleting++;
         changeDelBG();
@@ -109,18 +113,16 @@ function checkDelete(event){
             card.remove();
             var params = "card=" + encodeURI(cardname);
             num_deleting--;
-            changeDelBG();
             $.get("delcard.php"+"?"+params, function(d){console.log(d)});
         }, 8000);
         deleteIntervals[cardname] = stid;
     }
     else{
-        card.className = card.className.replace("shrink", "");
+        card.className = card.className.replace(" shrink", "");
         if(cardname in deleteIntervals){
             clearInterval(deleteIntervals[cardname]);
             if(num_deleting > 0)
                 num_deleting--;
-            changeDelBG();
         }
 
     }
@@ -146,7 +148,6 @@ function toggleExpand(e){
             e.innerHTML = "Place card to delete";
         }, 200);
     }
-
 }
 
 

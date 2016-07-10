@@ -2,17 +2,8 @@
 
 $basepath = realpath($_SERVER['DOCUMENT_ROOT']);
 include_once($basepath . '/assets/php/PagePrimitives.php');
-PagePrimitives::std_head("Card Game");
-?>
-<link rel="stylesheet" href="/projects/card-game/card-game.css">
-</head>
-<body>
-<?php
-PagePrimitives::std_navbar(PagePrimitives::std_login_button());
-
-
-
-
+PagePrimitives::std_head("Card Game", array("/projects/card-game/card-game.css"));
+PagePrimitives::std_navbar(PagePrimitives::named_login());
 
 ?>
 
@@ -22,7 +13,7 @@ PagePrimitives::std_navbar(PagePrimitives::std_login_button());
 
 </div>
 <button class="btn btn-primary add-a-card" onclick="toggleAddCardModal()">Add a Card <span style="font-height: 12px" class="glyphicon glyphicon-plus-sign"></span></button>
-<div id="addcard" class="add-card-modal" style="visibility: hidden">
+<div id="addcard" class="add-card-modal" style="visibility: hidden; ">
     <a style="position: absolute; top: 10px; right: 10px; color: grey" href="javascript:toggleAddCardModal();" ><span class="glyphicon glyphicon-remove"></span></a>
     <h2>Add a new Card</h2>
     <hr>

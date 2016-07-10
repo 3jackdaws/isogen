@@ -9,30 +9,19 @@ if(!isset($_COOKIE["token"]) || strlen($_COOKIE['token']) < 10 ){
     header( 'Location: /login' ) ;
     exit();
 }
-
-require(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/AuthModule.php");
-require(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/PagePrimitives.php");
+$basedir = realpath($_SERVER["DOCUMENT_ROOT"]);
+require($basedir . "/assets/php/AuthModule.php");
+require($basedir . "/assets/php/PagePrimitives.php");
+require($basedir . "/assets/php/DBArticle.php");
 $authmod = new AuthModule();
 $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
 
-?>
-<html>
-<head>
-    <?php
-    PagePrimitives::std_head();
-    ?>
-    <style>
-        body{
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-    <?php
-    PagePrimitives::std_navbar("<a class=\"btn btn-primary\" onclick=\"javascript:$.setCookie('token', null, null);window.location='/'\">Log Out</a>");
-    ?>
+PagePrimitives::std_head("Account");
 
-    <div style="position: relative; margin-top: 50px; " class="container">
+PagePrimitives::std_navbar("<a class=\"btn btn-primary\" onclick=\"javascript:$.setCookie('token', null, null);window.location='/'\">Log Out</a>");
+    ?>
+<iframe id="pframe" class="" src="/account/temp" frameborder="0" style="z-index: 100; width: 0%; height: 0%; position: fixed; top: 0; left: 0;" ></iframe>
+<div style="position: relative; margin-top: 50px; " class="container">
         <ul class="nav nav-tabs nav-justified">
             <li role="presentation" class="active"><a href="#t1" data-toggle="tab">Home</a></li>
             <li role="presentation"><a href="#t2" data-toggle="tab">Profile</a></li>
@@ -43,7 +32,7 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
             <h1>Upload New Article</h1>
             <form method="post" id="newarticle">
                 <label class="btn btn-default btn-file" style="margin: 0px 10px 10px 20px;">
-                    Upload Markup File and Images<br><input id="files" name="files[]" multiple type="file" style="display: none;" onchange="ArticleUploadForm.updateFiles()">
+                    Upload Markup File and Images<br><input id="files" name="files[]" multiple type="file" style="display: none;" onchange="AUF.updateFiles()">
                 </label>
                 <div class='list-group' id="fld">
 
@@ -52,22 +41,45 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
 
                 </div>
                 <div class='btn-group btn-group-justified'>
-                    <a id="parsebutton" class='btn btn-primary disabled' onclick='ArticleUploadForm.uploadComponents()' >Parse Markup</a>
-                    <a id="publishbutton" class='btn btn-success disabled' onclick='ArticleUploadForm.publish()' >Publish Article</a>
+                    <a id="parsebutton" class='btn btn-primary disabled' onclick='AUF.uploadComponents()' >Parse Markup</a>
+                    <a id="publishbutton" class='btn btn-success disabled' onclick='AUF.publish()' >Publish Article</a>
                 </div>
-                
             </form>
-        </div>
-        <div class="col-lg-8" style="margin-top: 50px;">
-            <div style="height: 100%; padding-left: 30px">
-                <iframe id="pframe" class="zoom-frame" src="./temp" frameborder="0" ></iframe>
 
+            <div class="well-lg">Press <span class="btn btn-sm btn-default disabled">S</span> to preview article.</div>
+        </div>
+        <div id="prevArt" class="col-lg-8" style="margin-top: 50px; text-align: center">
+            <h1>Articles by you</h1>
+            <h6>Highlighted article is featured.  Click to feature a different article.</h6>
+            <div class="list-group">
+            <?php
+            $dbcon = new DBArticle();
+            $articles = $dbcon->getArticlesByAuthor($user->name);
+
+            foreach ($articles as $article){
+                $class = "list-group-item";
+                if($article['featured'] == 1)
+                    $class .= " list-group-item-info";
+
+                ?>
+
+                <a onclick="AUF.markFeatured(this, <?=$article['article_id']?>)" class="<?=$class?>">
+                    <h4><?=$article['heading']?></h4>
+                    <h5><?=$article['subheading']?></h5>
+                </a>
+
+                <?php
+            }
+
+            ?>
             </div>
+
         </div>
     </div>
 </body>
 <script>
-    var ArticleUploadForm = {
+    var token = "<?=$_COOKIE['token']?>";
+    var AUF = {
         fileListDiv:    {},
         parseButton:    {},
         publishButton:  {},
@@ -79,6 +91,8 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
             this.parseButton = document.getElementById('parsebutton');
             this.publishButton = document.getElementById('publishbutton');
             this.issueDiv = document.getElementById('issues');
+            document.addEventListener("keydown", AUF.showPreview);
+            document.addEventListener("keyup", AUF.unshowPreview);
         },
         updateFiles: function(){
             this.canParse = this.canPublish = false;
@@ -110,35 +124,59 @@ $user = json_decode($authmod->loginFromToken($_COOKIE['token']));
         },
         uploadComponents: function(){
             var fdata = new FormData(document.forms.namedItem("newarticle"));
-            $.post("./parse.php", fdata, this.getServerResponse);
+            $.post("/account/parse.php", fdata, this.getServerResponse);
         },
         getServerResponse: function(data){
-            ArticleUploadForm.issueDiv.innerHTML = "";
+            AUF.issueDiv.innerHTML = "";
             console.log(data);
             var response = JSON.parse(data);
             if(response.error == 1){
-                var num_errros = response.errorlines.length;
+                var num_errros = response.message.length;
                 for(var i = 0; i<num_errros; i++){
-                    ArticleUploadForm.issueDiv.innerHTML += "<a class='list-group-item list-group-item-danger'>" + response.errorlines[i] + "</a>";
+                    AUF.issueDiv.innerHTML += "<a class='list-group-item list-group-item-danger'>" + response.message[i] + "</a>";
                 }
             }
 
             if(response.error == 0){
                 document.getElementById('pframe').contentWindow.location = document.getElementById('pframe').contentWindow.location;
-                ArticleUploadForm.issueDiv.innerHTML += "<a class='list-group-item list-group-item-success'>Article parsed successfully</a>";
-                ArticleUploadForm.issueDiv.innerHTML += "<a class='list-group-item'>" + response.message + "</a>";
-                ArticleUploadForm.canPublish = true;
-                ArticleUploadForm.updateButtonStatus();
+                AUF.issueDiv.innerHTML += "<a class='list-group-item list-group-item-success'>Article parsed successfully</a>";
+                AUF.issueDiv.innerHTML += "<a class='list-group-item'>" + "Article will publish to:<br>" + response.extra + "</a>";
+                AUF.canPublish = true;
+                AUF.updateButtonStatus();
             }
 
         },
         publish: function(){
             var fdata = new FormData(document.forms.namedItem("newarticle"));
-            $.post("./publish.php", fdata, this.getServerResponse);
+            $.post("/account/publish.php", fdata, this.getServerResponse);
+        },
+        showPreview: function (event){
+            if(event.keyCode == 83){
+                console.log('s');
+                document.getElementById("pframe").style.width = '100%';
+                document.getElementById("pframe").style.height = '100%';
+            }
+            else{
+                console.log(event.keyCode);
+            }
+        },
+        unshowPreview: function(event){
+            document.getElementById("pframe").style.width = 0;
+            document.getElementById("pframe").style.height = 0;
+        },
+        markFeatured: function (e, id) {
+            var undo = document.getElementById("prevArt").getElementsByClassName("list-group-item-info");
+            if(undo.length > 0)
+                undo[0].className = undo[0].className.replace(/list-group-item-info/, "");
+            e.className += " list-group-item-info";
+            console.log(e);
+            $.post2("/assets/ajax/feature.php", "token=" + token +"&id="+id, function (data) {
+                console.log(data);
+            })
         }
 
     };
-    ArticleUploadForm.init();
+    AUF.init();
 </script>
 </html>
 

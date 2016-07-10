@@ -9,10 +9,11 @@
 class PagePrimitives
 {
     
-    public static function std_head($title = "Isogen"){
+    public static function std_head($title = "Isogen",$script_src = array()){
 
         ?>
-
+        <html>
+        <head>
         <meta charset="utf-8">
         <meta name="theme-color" content="#FFFFFF">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,8 +31,22 @@ class PagePrimitives
         <script src="/assets/js/instaclick.js" data-no-instant></script>
 
         <script src="/assets/js/std.js"></script>
-        
+        <?php
+        foreach($script_src as $src){
+            if(strpos($src, ".js") != false){
+                echo "<script src=\"" . $src . "\"></script>";
+            }
+            elseif(strpos($src, ".css") != false){
+                echo "<link href=\"" . $src . "\" rel=\"stylesheet\">";
+            }
+            else{
+                echo "<style>" . $src . "</style>";
+            }
 
+        }
+        ?>
+        </head>
+        <body>
         <?php
     }
     public static function std_navbar($name = "<a href='/account/'>Log In</a>"){
@@ -48,7 +63,7 @@ class PagePrimitives
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li id="home" class="navlink active"><a href="/">Home</a></li>
+                    <li id="home" class="navlink"><a href="/">Home</a></li>
                     <li id="puzzles" class="navlink"><a href="/puzzles">Puzzles</a></li>
                     <li id="projects" class="navlink"><a href="/projects">Projects</a></li>
                     <li id="about" class="navlink"><a href="/about">About</a></li>
@@ -94,13 +109,11 @@ class PagePrimitives
                 $a_back_tag;
         }
     }
-    public static function std_page($title = "Isogen", $name){
-        echo "<html><head>";
-        self::std_head($title);
-        echo "</head><body>";
+    public static function std_page($title = "Isogen", $script_src = array(),$name){
+        self::std_head($title, $script_src);
         self::std_navbar($name);
     }
-    public static function std_login_button($name){
+    public static function named_login($name){
         if(strlen($name) > 0)
             return "<a href=\"/account/\" class=\"btn btn-primary\">" . $name . "'s Account</a>";
         return "<a href=\"/account/\" class=\"btn btn-primary\">Log In</a>";

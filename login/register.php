@@ -58,7 +58,7 @@ PagePrimitives::std_page();
 //            return;
 //        }
 
-        $.post("register.php", fdata, function (data) {
+        $.post("/login/register.php", fdata, function (data) {
             var response = JSON.parse(data);
             if(fdata.get("cookie") === "on"){
                 $.setCookie('token', response.cookie, 1);

@@ -1,5 +1,5 @@
 <?php
-require("json_response.php");
+require("../assets/php/json_response.php");
 
 class ArticleParser
 {
@@ -9,16 +9,15 @@ class ArticleParser
 	private $_errors;
 	public function __construct()
 	{
-		$_webroot_path = realpath($_SERVER['DOCUMENT_ROOT']);
+		$this->_webroot_path = realpath($_SERVER['DOCUMENT_ROOT']);
 	}
 
 	public function parseMarkup($web_path)
 	{
 		$path = $this->_webroot_path . $web_path;
 		$this->_pathto = $path;
-		$this->_article["name"] = basename($this->_article_name);
 		$server_path = realpath($_SERVER['DOCUMENT_ROOT']);
-		$this->_article["text_path"] = $server_path . $path . "/markup.html";
+		$this->_article["text_path"] = $path . "/markup.html";
 
 		#Open and Read in File
 		$file = fopen($this->_article["text_path"], "r");
@@ -32,12 +31,20 @@ class ArticleParser
 		}
 		$this->_article['basedir'] = $path .'/';
 
+
+
+
 		if(preg_match("#(?<=\<h1>).*(?=</h1>)#", $text, $matches) > 0){
 			$this->_article["h1"] = $matches[0];
 		}else{
 			$this->_article["h1"] = false;
 		}
 
+		if(preg_match("#(?<=\<short>).*(?=</short>)#", $text, $matches) > 0){
+			$this->_article["name"] = $matches[0];
+		}else{
+			$this->_article["name"] = preg_replace("#[ ,.]#", "-", $this->_article['h1']);
+		}
 
 		if(preg_match("#(?<=\<h2>).*(?=</h2>)#", $text, $matches) > 0){
 			$this->_article["h2"] = $matches[0];
@@ -71,34 +78,29 @@ class ArticleParser
 	public function checkErrors(){
 		$this->_errors = new json_response();
 		$provided_files = [];
-		$files_in_dir = glob($this->_pathto . "*");
+		$files_in_dir = glob($this->_pathto . "/*");
 		foreach ($files_in_dir as $file){
 		    $provided_files[] = basename($file);
 		}
 
 		$required_files = [];
 		$required_files[] = "markup.html";
-		$required_files[] = basename($article["header_image"]);
-		foreach ($article["required_images"] as $img){
+		$required_files[] = basename($this->_article["header_image"]);
+		foreach ($this->_article["required_images"] as $img){
 		    $required_files[] = $img;
 		}
 		$missing_files = array_diff($required_files, $provided_files);
 		foreach ($missing_files as $missing_file) {
 		    $this->_errors->add_error("Missing file: " . $missing_file);
 		}
-		$response["message"] = $article["publish-to"];
-		foreach ($$this->_article as $key => $value) {
+		foreach ($this->_article as $key => $value) {
 			if(!$value){
 				$this->_errors->add_error($key . " tag not set");
 			}
 		}
-		if($this->_errors["error"] == true){
-			return true;
-		}
-		return false;
 	}
 
 	public function getErrorsAsJSON(){
-		return json_encode($this->_errors);
+		return $this->_errors;
 	}
 }

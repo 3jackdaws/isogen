@@ -40,7 +40,7 @@ PagePrimitives::std_page();
                 return;
             }
 
-            $.post("login.php", fdata, function (data) {
+            $.post("/login/login.php", fdata, function (data) {
                 var response = JSON.parse(data);
                 console.log(response);
                 if(document.getElementsByName("password")[0].value === "on"){
