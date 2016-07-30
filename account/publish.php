@@ -5,9 +5,9 @@
  * Date: 6/27/2016
  * Time: 7:56 PM
  */
-include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/account/ArticleParser.php");
-include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/DBArticle.php");
-include(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/json_response.php");
+include_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/account/ArticleParser.php");
+include_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/DBArticle.php");
+include_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/json_response.php");
 $ap = new ArticleParser();
 $article = $ap->parseMarkup("/account/temp");
 $response = new json_response();
