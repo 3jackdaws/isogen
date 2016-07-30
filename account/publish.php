@@ -13,8 +13,7 @@ $article = $ap->parseMarkup("/account/temp");
 $response = new json_response();
 $upload_dir = realpath($_SERVER["DOCUMENT_ROOT"]) . "" . $article["publish-to"];
 if(!mkdir($upload_dir)){
-    $response["error"] = 1;
-    $response["errorline"] = "Could not make directory";
+    $response->add_error("Could not make directory");
 }
 
 $files = $_FILES["files"];
@@ -29,11 +28,10 @@ for ($i = 0; $i<$num_files; $i++){
 copy(realpath($_SERVER["DOCUMENT_ROOT"]) . "/account/temp/cp.php", $upload_dir . "/index.php");
 $dba = new DBArticle();
 if($dba->addArticle(basename($article["publish-to"]))){
-    $response["message"] = "Article successfully published";
+    $response->add_message("Article successfully published");
 }
 else{
-    $response["error"] = 1;
-    $response["errorline"][] = $dba->getError();
+    $response->add_error($dba->getError());
 }
 
-echo json_encode($response);
+echo $response;
