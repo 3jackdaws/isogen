@@ -1,7 +1,7 @@
 <?php
-    include_once('ArticleParser.php');
-    include_once('PagePrimitives.php');
-    require_once('json_response.php');
+include_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/ArticleParser.php");
+include_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/PagePrimitives.php");
+include_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/assets/php/json_response.php");
 /**
  * Created by PhpStorm.
  * User: Ian Murphy
