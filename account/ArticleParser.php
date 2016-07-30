@@ -94,6 +94,9 @@ class ArticleParser
 		    $this->_errors->add_error("Missing file: " . $missing_file);
 		}
 		foreach ($this->_article as $key => $value) {
+			if($key == "required_images"){
+				continue;
+			}
 			if(!$value){
 				$this->_errors->add_error($key . " tag not set");
 			}
